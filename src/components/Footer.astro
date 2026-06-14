@@ -1,0 +1,24 @@
+---
+import { SITE } from '@/config/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <a class="footer-logo" href="/">
+        <img src="/images/logo-dark.jpg" alt={SITE.name} width="240" height="40" />
+      </a>
+      <div class="socials">
+        <a class="social" href={SITE.social.instagram} aria-label="Instagram" rel="noopener noreferrer" target="_blank">IG</a>
+        <a class="social" href={SITE.social.linkedin} aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">in</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Projetos Pro Audio • Consultoria Técnica • Estúdios • Som ao Vivo • Áudio Imersivo</div>
+      <div>© {year} Projetos Pro Audio. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<a class="btn btn-primary sticky-cta" href="/#contato">Fale conosco</a>

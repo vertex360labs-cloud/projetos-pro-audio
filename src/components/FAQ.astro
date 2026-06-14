@@ -1,0 +1,66 @@
+---
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+  eyebrow?: string;
+  id?: string;
+  openFirst?: boolean;
+  hideHeader?: boolean;
+  class?: string;
+}
+
+const {
+  items,
+  title = 'Perguntas frequentes',
+  eyebrow = 'FAQ',
+  id = 'faq',
+  openFirst = false,
+  hideHeader = false,
+  class: className = 'section-tight',
+} = Astro.props;
+---
+
+<section class={className} id={id}>
+  <div class="container">
+    {!hideHeader && (
+      <>
+        <span class="eyebrow">{eyebrow}</span>
+        <h2 class="title-lg" style="margin-top:14px;">{title}</h2>
+      </>
+    )}
+    <div class="accordion" style="margin-top:24px;" data-faq>
+      {items.map((item, index) => (
+        <div class={`accordion-item${openFirst && index === 0 ? ' open' : ''}`}>
+          <button class="accordion-trigger" type="button">
+            <span>{item.question}</span>
+            <span>+</span>
+          </button>
+          <div class="accordion-content" style={openFirst && index === 0 ? 'max-height:160px;' : undefined}>
+            <div class="accordion-body">{item.answer}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-faq]').forEach((group) => {
+    group.querySelectorAll('.accordion-item').forEach((item) => {
+      const trigger = item.querySelector('.accordion-trigger');
+      const content = item.querySelector('.accordion-content') as HTMLElement | null;
+      trigger?.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        item.classList.toggle('open');
+        if (content) {
+          content.style.maxHeight = isOpen ? '0px' : `${content.scrollHeight}px`;
+        }
+      });
+    });
+  });
+</script>

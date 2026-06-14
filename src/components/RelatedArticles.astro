@@ -1,0 +1,33 @@
+---
+interface RelatedArticle {
+  title: string;
+  href: string;
+  description: string;
+}
+
+interface Props {
+  articles: RelatedArticle[];
+  title?: string;
+}
+
+const { articles, title = 'Artigos relacionados' } = Astro.props;
+---
+
+{articles.length > 0 && (
+  <section class="section-tight">
+    <div class="container">
+      <span class="eyebrow">Continue lendo</span>
+      <h2 class="title-lg" style="margin-top:14px;">{title}</h2>
+      <div class="related-grid">
+        {articles.map((article) => (
+          <a href={article.href} class="card blog-card">
+            <div class="blog-card-body">
+              <h3 class="title-md" style="font-size:1rem;">{article.title}</h3>
+              <p class="muted" style="margin-top:10px; font-size:.92rem;">{article.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

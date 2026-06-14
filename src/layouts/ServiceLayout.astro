@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTA from '@/components/CTA.astro';
+import { breadcrumbSchema, serviceSchema, faqSchema } from '@/utils/schema';
+import type { FAQItem } from '@/components/FAQ.astro';
+import type { BreadcrumbItem } from '@/components/Breadcrumb.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  eyebrow?: string;
+  breadcrumbs: BreadcrumbItem[];
+  faq?: FAQItem[];
+}
+
+const { title, description, slug, eyebrow = 'Serviços', breadcrumbs, faq = [] } = Astro.props;
+
+const schema = [
+  serviceSchema(title, description, slug),
+  breadcrumbSchema(breadcrumbs),
+  ...(faq.length ? [faqSchema(faq)] : []),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={slug} schema={schema}>
+  <header class="page-hero">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+      <span class="eyebrow">{eyebrow}</span>
+      <h1 class="title-lg">{title}</h1>
+      <p class="lead">{description}</p>
+    </div>
+  </header>
+
+  <div class="content-body">
+    <div class="container content-prose">
+      <slot />
+    </div>
+  </div>
+
+  {faq.length > 0 && <FAQ items={faq} title={`FAQ — ${title}`} />}
+  <CTA
+    title="Solicitar diagnóstico para este serviço"
+    description="Conte seu cenário e receba direção técnica antes de comprar equipamentos ou iniciar a reforma."
+  />
+</BaseLayout>

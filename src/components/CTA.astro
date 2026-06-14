@@ -1,0 +1,105 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  showForm?: boolean;
+}
+
+const { eyebrow = 'Vamos conversar', title, description, showForm = true } = Astro.props;
+---
+
+<section class="section" id="contato">
+  <div class="container">
+    <div class="cta-panel">
+      <div class="cta-copy">
+        <span class="eyebrow">{eyebrow}</span>
+        <h2 class="title-lg" style="margin-top:14px;">{title}</h2>
+        <p class="lead">{description}</p>
+
+        {showForm && (
+          <form id="leadForm" class="contact-form">
+            <div class="field-grid">
+              <div class="field">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input id="empresa" name="empresa" type="text" placeholder="Sua empresa ou projeto" />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="whatsapp">WhatsApp</label>
+                <input id="whatsapp" name="whatsapp" type="tel" placeholder="(00) 00000-0000" required />
+              </div>
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="voce@empresa.com" required />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="tipo">Tipo de projeto</label>
+                <select id="tipo" name="tipo" required>
+                  <option value="">Selecione</option>
+                  <option>Estúdio profissional</option>
+                  <option>Dolby Atmos / immersive</option>
+                  <option>Live sound / touring</option>
+                  <option>Locadora de áudio</option>
+                  <option>RF / wireless / IEM</option>
+                  <option>Igreja / auditório / venue</option>
+                  <option>Curadoria de setup</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="investimento">Faixa de investimento</label>
+                <select id="investimento" name="investimento">
+                  <option value="">Selecione</option>
+                  <option>Até R$ 30 mil</option>
+                  <option>R$ 30 mil a R$ 80 mil</option>
+                  <option>R$ 80 mil a R$ 200 mil</option>
+                  <option>R$ 200 mil a R$ 500 mil</option>
+                  <option>Acima de R$ 500 mil</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cenario">Descreva seu cenário atual</label>
+              <textarea id="cenario" name="cenario" placeholder="Conte brevemente o contexto, os equipamentos já existentes e o objetivo do projeto"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Fale com um especialista</button>
+            <p class="form-note">Front-end pronto para Vercel. Conecte este formulário ao seu CRM, e-mail, webhook ou WhatsApp para captação real em produção.</p>
+            <div id="successBox" class="success-box" role="status" aria-live="polite">
+              Pedido recebido. O layout está pronto; o próximo passo é conectar o formulário ao seu canal de captura real.
+            </div>
+          </form>
+        )}
+      </div>
+      <div class="cta-visual" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const leadForm = document.getElementById('leadForm') as HTMLFormElement | null;
+  const successBox = document.getElementById('successBox');
+
+  leadForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!leadForm.checkValidity()) {
+      leadForm.reportValidity();
+      return;
+    }
+    const payload = Object.fromEntries(new FormData(leadForm).entries());
+    console.log('Lead capturado localmente:', payload);
+    successBox?.classList.add('show');
+    leadForm.reset();
+  });
+</script>

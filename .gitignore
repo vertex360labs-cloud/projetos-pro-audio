@@ -1,1 +1,20 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+.astro/
+
+# legacy static site
+/assets/
+/index.html
+
+# env
+.env
+.env.*
+
+# OS
 .DS_Store
+
+# logs
+npm-debug.log*

@@ -1,0 +1,23 @@
+---
+import ServiceLayout from '@/layouts/ServiceLayout.astro';
+import PageSections from '@/components/PageSections.astro';
+import { getPageBySlug, brands } from '@/data/pages';
+
+const slug = '/marcas/shure';
+const page = getPageBySlug(brands, slug)!;
+---
+
+<ServiceLayout
+  title={page.title}
+  description={page.description}
+  slug={page.slug}
+  eyebrow="Marcas"
+  breadcrumbs={[
+    { label: 'Início', href: '/' },
+    { label: 'Marcas', href: '/marcas/pmc' },
+    { label: page.title },
+  ]}
+  faq={page.faq}
+>
+  <PageSections page={page} />
+</ServiceLayout>

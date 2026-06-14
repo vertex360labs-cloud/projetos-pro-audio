@@ -1,0 +1,316 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTA from '@/components/CTA.astro';
+import { homeFAQ, objectionsFAQ } from '@/data/faq';
+import { faqSchema } from '@/utils/schema';
+---
+
+<BaseLayout schema={faqSchema(homeFAQ)}>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <span class="eyebrow">Consultoria e Projetos</span>
+          <h1 class="title-hero">A excelência técnica por trás dos melhores sistemas de áudio</h1>
+          <p class="lead">Projetos personalizados, tecnologia de ponta e resultados que elevam o padrão do áudio profissional — de estúdios e salas imersivas a live sound, RF e integração premium.</p>
+          <div class="btn-row">
+            <a href="#servicos" class="btn btn-primary">Conheça nossos serviços</a>
+            <a href="#contato" class="btn btn-secondary">Solicitar diagnóstico técnico</a>
+          </div>
+        </div>
+
+        <div class="hero-kpis">
+          <div class="hero-kpi">
+            <strong>+ precisão</strong>
+            <span class="muted">na especificação e expansão do sistema</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>- retrabalho</strong>
+            <span class="muted">em compras, upgrades e integrações erradas</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>+ performance</strong>
+            <span class="muted">sonora, operacional e estratégica</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars section-no-top" id="servicos">
+      <div class="container">
+        <div class="pillars-grid">
+          <article class="pillar">
+            <div class="pillar-icon" aria-hidden="true"></div>
+            <h3>Consultoria</h3>
+            <p class="muted">Análise técnica completa para decisões assertivas e seguras antes do investimento.</p>
+          </article>
+          <article class="pillar">
+            <div class="pillar-icon" aria-hidden="true"></div>
+            <h3>Projetos</h3>
+            <p class="muted">Projetos acústicos, eletroacústicos e de workflow com precisão e inteligência.</p>
+          </article>
+          <article class="pillar">
+            <div class="pillar-icon" aria-hidden="true"></div>
+            <h3>Tecnologia</h3>
+            <p class="muted">Integração de sistemas avançados, immersive audio, RF e soluções de última geração.</p>
+          </article>
+          <article class="pillar">
+            <div class="pillar-icon" aria-hidden="true"></div>
+            <h3>Suporte</h3>
+            <p class="muted">Acompanhamento técnico em todas as etapas do seu projeto, da decisão à evolução.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section backdrop-grid" id="expertise">
+      <div class="container grid grid-2 split-feature">
+        <div class="feature-copy">
+          <span class="eyebrow">Expertise</span>
+          <h2 class="title-lg">Do conceito à operação perfeita.</h2>
+          <p class="lead">Atuamos em estúdios, espaços de mixagem, locadoras, igrejas, ambientes corporativos e projetos de áudio imersivo com a mesma busca por performance, coerência de sistema e padrão de referência.</p>
+          <div class="btn-row">
+            <a href="#processo" class="btn btn-outline">Saiba mais</a>
+          </div>
+        </div>
+
+        <div class="mosaic" aria-label="Galeria de expertise visual">
+          <div class="mosaic-item large"><img src="/images/expertise-mic.jpg" alt="Detalhe de microfone em ambiente técnico" width="600" height="420" loading="lazy" /></div>
+          <div class="mosaic-item"><img src="/images/expertise-diagram.jpg" alt="Diagrama técnico e sistema de áudio" width="300" height="210" loading="lazy" /></div>
+          <div class="mosaic-item"><img src="/images/expertise-theatre.jpg" alt="Auditório com projeto de áudio profissional" width="300" height="210" loading="lazy" /></div>
+          <div class="mosaic-item"><img src="/images/expertise-blueprint.jpg" alt="Blueprint e modelagem de projeto acústico" width="300" height="210" loading="lazy" /></div>
+          <div class="mosaic-item"><img src="/images/expertise-linearray.jpg" alt="Sistema line array em instalação profissional" width="300" height="210" loading="lazy" /></div>
+          <div class="mosaic-item"><img src="/images/expertise-graph.jpg" alt="Gráfico técnico de resposta e medição" width="300" height="210" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="technical-strip section-tight" id="tecnologia">
+      <div class="container">
+        <div class="technical-grid">
+          <article class="technical-item">
+            <div class="technical-mark" aria-hidden="true"></div>
+            <div>
+              <h3>Áudio imersivo</h3>
+              <p class="muted">Projetos Dolby Atmos e sistemas imersivos de alta performance.</p>
+            </div>
+          </article>
+          <article class="technical-item">
+            <div class="technical-mark" aria-hidden="true"></div>
+            <div>
+              <h3>Sistemas sem fio</h3>
+              <p class="muted">Soluções profissionais de RF, monitoração e controle.</p>
+            </div>
+          </article>
+          <article class="technical-item">
+            <div class="technical-mark" aria-hidden="true"></div>
+            <div>
+              <h3>Acústica avançada</h3>
+              <p class="muted">Medições, simulação e tratamento acústico de precisão.</p>
+            </div>
+          </article>
+          <article class="technical-item">
+            <div class="technical-mark" aria-hidden="true"></div>
+            <div>
+              <h3>Engenharia de verdade</h3>
+              <p class="muted">Metodologia, experiência e tecnologia em cada detalhe do projeto.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <span class="eyebrow">Mercado e aplicações</span>
+        <h2 class="title-lg" style="margin-top:14px;">Mais do que indicação de equipamento: <span class="accent">clareza técnica</span></h2>
+        <p class="lead">Projetos, curadoria, especificação, integração e visão de crescimento para sistemas que precisam performar no mundo real.</p>
+
+        <div class="grid grid-3" style="margin-top:28px;">
+          <article class="card" style="padding:28px;">
+            <h3 class="title-md"><a href="/servicos/consultoria-estudio-profissional">Estúdios profissionais</a></h3>
+            <p class="muted" style="margin-top:10px;">Projeto de setup, monitoração, fluxo híbrido, interfaces, microfones, acústica e expansão futura.</p>
+          </article>
+          <article class="card" style="padding:28px;">
+            <h3 class="title-md"><a href="/servicos/projetos-dolby-atmos">Dolby Atmos & immersive</a></h3>
+            <p class="muted" style="margin-top:10px;">Salas 7.1.4, monitoração, integração de workflow e especificação para produção imersiva premium.</p>
+          </article>
+          <article class="card" style="padding:28px;">
+            <h3 class="title-md"><a href="/servicos/consultoria-live-sound">Live sound & touring</a></h3>
+            <p class="muted" style="margin-top:10px;">Sistemas com foco em confiabilidade, cobertura, operação, padronização e retorno de investimento.</p>
+          </article>
+          <article class="card" style="padding:28px;">
+            <h3 class="title-md"><a href="/servicos/sistemas-rf-wireless">RF, wireless & IEM</a></h3>
+            <p class="muted" style="margin-top:10px;">Planejamento técnico para ambientes críticos, maior densidade de canais e operação mais previsível.</p>
+          </article>
+          <article class="card" style="padding:28px;">
+            <h3 class="title-md">Locadoras de áudio</h3>
+            <p class="muted" style="margin-top:10px;">Curadoria de upgrade de parque para elevar margem, percepção de valor e consistência de entrega.</p>
+          </article>
+          <article class="card" style="padding:28px;">
+            <h3 class="title-md"><a href="/servicos/projetos-para-igrejas">Igrejas, auditórios & venues</a></h3>
+            <p class="muted" style="margin-top:10px;">Cobertura, inteligibilidade, operação simplificada e sistema preparado para rotina real de uso.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <div>
+          <span class="eyebrow">O problema real</span>
+          <h2 class="title-lg" style="margin-top:14px;">O problema quase nunca é falta de equipamento. É falta de direção.</h2>
+          <p class="lead">Você pode ter orçamento, boas marcas e vontade de montar algo de alto nível. Mesmo assim, o sistema pode nascer errado.</p>
+          <ul class="check-list">
+            <li>Sala que não traduz e monitoração incompatível com o ambiente</li>
+            <li>Interface subdimensionada para a expansão desejada</li>
+            <li>Wireless inseguro em eventos críticos</li>
+            <li>Locadora investindo sem visão clara de margem e retorno</li>
+            <li>Projeto caro que vira coleção de peças em vez de operação eficiente</li>
+          </ul>
+        </div>
+        <div class="card authority-panel" style="padding:34px;">
+          <h3 class="title-md">O que muda com projeto técnico sério</h3>
+          <div class="grid grid-2" style="margin-top:24px; gap:14px;">
+            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
+              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">+ segurança</strong>
+              <span class="muted">na decisão antes da compra</span>
+            </div>
+            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
+              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">+ coerência</strong>
+              <span class="muted">entre sala, operação e equipamento</span>
+            </div>
+            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
+              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">- desperdício</strong>
+              <span class="muted">com retrabalho e escolhas erradas</span>
+            </div>
+            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
+              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">+ escalabilidade</strong>
+              <span class="muted">para crescer sem travas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <span class="eyebrow">Clientes e referência de mercado</span>
+        <div class="brand-strip">
+          <a class="brand-chip" href="/servicos/projetos-dolby-atmos">Dolby<br/>Atmos</a>
+          <a class="brand-chip" href="/marcas/pmc">PMC</a>
+          <a class="brand-chip" href="/marcas/sennheiser">Sennheiser</a>
+          <a class="brand-chip" href="/marcas/ssl">Solid State Logic</a>
+          <a class="brand-chip" href="/comparativos/ssl-vs-avid">Avid</a>
+          <div class="brand-chip">DiGiCo</div>
+          <a class="brand-chip" href="/marcas/shure">Shure</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="processo">
+      <div class="container">
+        <span class="eyebrow">Processo</span>
+        <h2 class="title-lg" style="margin-top:14px;">Um processo claro para transformar dúvida em decisão segura</h2>
+        <div class="process-grid">
+          <article class="card process-card" data-step="01">
+            <div class="process-number">01</div>
+            <h3 class="title-md">Diagnóstico</h3>
+            <p class="muted" style="margin-top:12px;">Entendimento do cenário, objetivo, ambiente, orçamento, operação e gargalos reais.</p>
+          </article>
+          <article class="card process-card" data-step="02">
+            <div class="process-number">02</div>
+            <h3 class="title-md">Direção técnica</h3>
+            <p class="muted" style="margin-top:12px;">Análise de prioridades, correção de premissas erradas e definição do caminho ideal.</p>
+          </article>
+          <article class="card process-card" data-step="03">
+            <div class="process-number">03</div>
+            <h3 class="title-md">Projeto & especificação</h3>
+            <p class="muted" style="margin-top:12px;">Solução organizada com lógica de sistema, compatibilidade e visão de crescimento.</p>
+          </article>
+          <article class="card process-card" data-step="04">
+            <div class="process-number">04</div>
+            <h3 class="title-md">Implementação orientada</h3>
+            <p class="muted" style="margin-top:12px;">Mais segurança na compra, montagem, contratação e evolução do projeto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <span class="eyebrow">Comparativo</span>
+        <h2 class="title-lg" style="margin-top:14px;">Comprar primeiro é caro. Projetar primeiro é inteligente.</h2>
+        <div class="comparison-shell" style="margin-top:24px;">
+          <table aria-label="Comparativo de abordagem">
+            <thead>
+              <tr>
+                <th>Sem projeto</th>
+                <th>Com Projetos Pro Audio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Compra por impulso, influência ou moda</td>
+                <td>Decisão baseada no contexto real do projeto</td>
+              </tr>
+              <tr>
+                <td>Risco alto de incompatibilidade</td>
+                <td>Sistema coerente e escalável</td>
+              </tr>
+              <tr>
+                <td>Retrabalho e gastos duplicados</td>
+                <td>Investimento com direção e prioridade</td>
+              </tr>
+              <tr>
+                <td>Operação confusa e pouco previsível</td>
+                <td>Workflow claro para uso cotidiano</td>
+              </tr>
+              <tr>
+                <td>Performance abaixo do esperado</td>
+                <td>Maior previsibilidade de resultado</td>
+              </tr>
+              <tr>
+                <td>Expansão improvisada</td>
+                <td>Visão técnica de longo prazo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section objection-grid">
+      <div class="container grid grid-2">
+        <div>
+          <span class="eyebrow">Objeções</span>
+          <h2 class="title-lg" style="margin-top:14px;">Talvez você esteja pensando nisso agora</h2>
+          <FAQ items={objectionsFAQ} hideHeader id="objections" openFirst class="" />
+        </div>
+
+        <div class="card authority-panel" style="padding:34px;">
+          <span class="eyebrow">Autoridade</span>
+          <h2 class="title-lg" style="margin-top:14px;">Nós pensamos o áudio como sistema, não como vitrine</h2>
+          <p class="lead">Uma sala não é só monitor. Um touring rig não é só SPL. Um setup profissional não é só marca boa. Performance real acontece quando acústica, monitoração, captação, conversão, operação, rede, RF e uso prático trabalham juntos.</p>
+          <ul class="check-list">
+            <li>Visão integrada de performance sonora e operacional</li>
+            <li>Curadoria técnica baseada em contexto</li>
+            <li>Estratégia para expansão sem gargalos</li>
+            <li>Decisão premium com menos risco</li>
+          </ul>
+          <div class="btn-row">
+            <a href="#contato" class="btn btn-primary">Solicitar diagnóstico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTA
+      title="Sobre o seu projeto?"
+      description="Nossa equipe está pronta para entender suas necessidades e entregar soluções que fazem a diferença — com visão técnica, critério e direção antes do investimento."
+    />
+
+    <FAQ items={homeFAQ} />
+  </main>
+</BaseLayout>

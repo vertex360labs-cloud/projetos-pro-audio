@@ -1,0 +1,30 @@
+---
+import { SITE } from '@/config/site';
+
+interface Props {
+  author?: string;
+  role?: string;
+  bio?: string;
+}
+
+const {
+  author = SITE.author.name,
+  role = SITE.author.role,
+  bio = SITE.author.bio,
+} = Astro.props;
+
+const initials = author
+  .split(' ')
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join('');
+---
+
+<aside class="author-box card" aria-label="Sobre o autor">
+  <div class="author-avatar" aria-hidden="true">{initials}</div>
+  <div>
+    <h3 class="title-md" style="font-size:1rem;">{author}</h3>
+    <p class="muted" style="margin-top:6px; font-size:.88rem;">{role}</p>
+    <p class="muted" style="margin-top:10px;">{bio}</p>
+  </div>
+</aside>

@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getReadingTime } from '@/utils/reading-time';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const readingTime = getReadingTime(post.body ?? '');
+const slug = `/blog/${post.slug}`;
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .filter((item) => item.slug !== post.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const relatedSlugs = post.data.relatedSlugs ?? [];
+const relatedFromFrontmatter = allPosts.filter((item) => relatedSlugs.includes(item.slug));
+const relatedFallback = allPosts
+  .filter((item) => item.data.tags.some((tag) => post.data.tags.includes(tag)))
+  .slice(0, 3);
+const related = (relatedFromFrontmatter.length ? relatedFromFrontmatter : relatedFallback).slice(0, 3);
+
+const toc = headings
+  .filter((heading) => heading.depth >= 2 && heading.depth <= 3)
+  .map((heading) => ({
+    id: heading.slug,
+    text: heading.text,
+    level: heading.depth,
+  }));
+---
+
+<ArticleLayout
+  title={post.data.title}
+  description={post.data.description}
+  slug={slug}
+  author={post.data.author}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  readingTime={readingTime}
+  heroImage={post.data.heroImage}
+  heroImageAlt={post.data.title}
+  breadcrumbs={[
+    { label: 'Início', href: '/' },
+    { label: 'Blog', href: '/blog' },
+    { label: post.data.title },
+  ]}
+  toc={toc}
+  relatedArticles={related.map((item) => ({
+    title: item.data.title,
+    href: `/blog/${item.slug}`,
+    description: item.data.description,
+  }))}
+>
+  <Content />
+</ArticleLayout>

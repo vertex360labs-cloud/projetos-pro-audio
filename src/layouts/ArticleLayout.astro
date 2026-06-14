@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import AuthorBox from '@/components/AuthorBox.astro';
+import RelatedArticles from '@/components/RelatedArticles.astro';
+import CTA from '@/components/CTA.astro';
+import { articleSchema, breadcrumbSchema } from '@/utils/schema';
+import { formatReadingTime } from '@/utils/reading-time';
+import type { BreadcrumbItem } from '@/components/Breadcrumb.astro';
+
+interface RelatedArticle {
+  title: string;
+  href: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  author: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  readingTime: number;
+  heroImage?: string;
+  heroImageAlt?: string;
+  breadcrumbs: BreadcrumbItem[];
+  toc?: { id: string; text: string; level: number }[];
+  relatedArticles?: RelatedArticle[];
+}
+
+const {
+  title,
+  description,
+  slug,
+  author,
+  pubDate,
+  updatedDate,
+  readingTime,
+  heroImage,
+  heroImageAlt = title,
+  breadcrumbs,
+  toc = [],
+  relatedArticles = [],
+} = Astro.props;
+
+const publishedTime = pubDate.toISOString();
+const modifiedTime = (updatedDate ?? pubDate).toISOString();
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={slug}
+  ogType="article"
+  ogImage={heroImage}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  author={author}
+  schema={[
+    articleSchema({
+      title,
+      description,
+      slug,
+      publishedTime,
+      modifiedTime,
+      image: heroImage,
+      author,
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <article>
+    <header class="page-hero">
+      <div class="container">
+        <Breadcrumb items={breadcrumbs} />
+        <span class="eyebrow">Blog</span>
+        <h1 class="title-lg">{title}</h1>
+        <p class="lead">{description}</p>
+        <div class="article-meta">
+          <span>{author}</span>
+          <span>•</span>
+          <time datetime={publishedTime}>
+            {pubDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+          </time>
+          <span>•</span>
+          <span>{formatReadingTime(readingTime)}</span>
+        </div>
+        {heroImage && (
+          <div class="article-hero-image">
+            <img src={heroImage} alt={heroImageAlt} width="1200" height="514" loading="eager" />
+          </div>
+        )}
+      </div>
+    </header>
+
+    <div class="content-body">
+      <div class="container article-layout">
+        <div class="content-prose">
+          <slot />
+          <AuthorBox author={author} />
+        </div>
+
+        {toc.length > 0 && (
+          <aside class="toc" aria-label="Índice do artigo">
+            <h2>Índice</h2>
+            <ul>
+              {toc.map((item) => (
+                <li style={`padding-left:${(item.level - 2) * 12}px`}>
+                  <a href={`#${item.id}`}>{item.text}</a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+      </div>
+    </div>
+  </article>
+
+  <RelatedArticles articles={relatedArticles} />
+  <CTA
+    title="Quer aplicar isso no seu projeto?"
+    description="Solicite um diagnóstico técnico e receba direção clara antes de investir em equipamentos ou reforma de sala."
+  />
+</BaseLayout>

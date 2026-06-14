@@ -1,0 +1,23 @@
+---
+import ServiceLayout from '@/layouts/ServiceLayout.astro';
+import PageSections from '@/components/PageSections.astro';
+import { getPageBySlug, guides } from '@/data/pages';
+
+const slug = '/guias/guia-rf-para-igrejas';
+const page = getPageBySlug(guides, slug)!;
+---
+
+<ServiceLayout
+  title={page.title}
+  description={page.description}
+  slug={page.slug}
+  eyebrow="Guias"
+  breadcrumbs={[
+    { label: 'Início', href: '/' },
+    { label: 'Guias', href: '/guias/como-montar-estudio-dolby-atmos' },
+    { label: page.title },
+  ]}
+  faq={page.faq}
+>
+  <PageSections page={page} />
+</ServiceLayout>

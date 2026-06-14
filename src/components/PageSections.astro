@@ -1,0 +1,23 @@
+---
+import type { PageContent } from '@/data/pages';
+
+interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+---
+
+{page.sections.map((section) => (
+  <>
+    <h2>{section.heading}</h2>
+    {section.paragraphs.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+  </>
+))}
+
+<div class="btn-row">
+  <a href="/#contato" class="btn btn-primary">Solicitar diagnóstico</a>
+  <a href="/blog" class="btn btn-secondary">Ver artigos técnicos</a>
+</div>

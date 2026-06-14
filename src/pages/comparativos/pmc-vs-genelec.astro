@@ -1,0 +1,22 @@
+---
+import ComparisonLayout from '@/layouts/ComparisonLayout.astro';
+import PageSections from '@/components/PageSections.astro';
+import { getPageBySlug, comparisons } from '@/data/pages';
+
+const slug = '/comparativos/pmc-vs-genelec';
+const page = getPageBySlug(comparisons, slug)!;
+---
+
+<ComparisonLayout
+  title={page.title}
+  description={page.description}
+  slug={page.slug}
+  breadcrumbs={[
+    { label: 'Início', href: '/' },
+    { label: 'Comparativos', href: '/comparativos/pmc-vs-genelec' },
+    { label: page.title },
+  ]}
+  faq={page.faq}
+>
+  <PageSections page={page} />
+</ComparisonLayout>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Blog"
+  description="Artigos técnicos sobre estúdios profissionais, Dolby Atmos, live sound, RF/wireless, monitoração e curadoria de equipamentos premium."
+  canonical="/blog"
+>
+  <header class="page-hero">
+    <div class="container">
+      <Breadcrumb items={[
+        { label: 'Início', href: '/' },
+        { label: 'Blog' },
+      ]} />
+      <span class="eyebrow">Conteúdo técnico</span>
+      <h1 class="title-lg">Blog Projetos Pro Audio</h1>
+      <p class="lead">Análises, guias e comparativos para quem precisa decidir com critério antes de investir em áudio profissional.</p>
+    </div>
+  </header>
+
+  <section class="content-body">
+    <div class="container">
+      <div class="blog-grid">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="card blog-card">
+            {post.data.heroImage && (
+              <div class="blog-card-image">
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="blog-card-body">
+              <time class="muted" datetime={post.data.pubDate.toISOString()} style="font-size:.84rem;">
+                {post.data.pubDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+              </time>
+              <h2 class="title-md" style="margin-top:10px; font-size:1.1rem;">{post.data.title}</h2>
+              <p class="muted" style="margin-top:10px; font-size:.92rem;">{post.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
