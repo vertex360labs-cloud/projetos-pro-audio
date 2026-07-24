@@ -1,0 +1,22 @@
+---
+import LandingLayout from '@/layouts/LandingLayout.astro';
+import { livePages } from '@/data/architecture';
+export function getStaticPaths() {
+  return livePages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+---
+<LandingLayout
+  title={page.title}
+  eyebrow="Live Sound"
+  canonical={`/live-sound/${page.slug}`}
+  description={page.description}
+  intro={page.intro}
+  image="/images/expertise-theatre.jpg"
+  bullets={page.bullets}
+  cards={[
+    { title: 'Qualifique o projeto', description: 'Envie contexto para o encaminhamento correto.', href: '/diagnostico-de-setup' },
+    { title: 'Outras soluções Live', description: 'Veja toda a arquitetura de Live Sound.', href: '/live-sound' },
+    { title: 'Conteúdo técnico', description: 'Guias e análises para a operação real.', href: '/conteudos' },
+  ]}
+/>

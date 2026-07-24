@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import CTA from '@/components/CTA.astro';
+---
+<BaseLayout title="Contato" description="Entre em contato com o Projetos Pro Audio para Studio, Live Sound, igrejas, eventos e projetos." canonical="/contato">
+  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Contato'}]}/><span class="eyebrow">Contato</span><h1 class="title-lg">Vamos entender o seu cenário.</h1><p class="lead">Use o diagnóstico abaixo. Leads de Studio seguem para Rodrigo; Live Sound e projetos específicos podem ser encaminhados à equipe técnica adequada.</p></div></header>
+  <CTA eyebrow="Envie sua necessidade" title="O contexto ajuda a começar melhor." />
+</BaseLayout>

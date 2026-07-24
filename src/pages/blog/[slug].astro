@@ -6,7 +6,7 @@ import { getReadingTime } from '@/utils/reading-time';
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -14,14 +14,14 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const readingTime = getReadingTime(post.body ?? '');
-const slug = `/blog/${post.slug}`;
+const slug = `/blog/${post.id}`;
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
-  .filter((item) => item.slug !== post.slug)
+  .filter((item) => item.id !== post.id)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const relatedSlugs = post.data.relatedSlugs ?? [];
-const relatedFromFrontmatter = allPosts.filter((item) => relatedSlugs.includes(item.slug));
+const relatedFromFrontmatter = allPosts.filter((item) => relatedSlugs.includes(item.id));
 const relatedFallback = allPosts
   .filter((item) => item.data.tags.some((tag) => post.data.tags.includes(tag)))
   .slice(0, 3);
@@ -54,7 +54,7 @@ const toc = headings
   toc={toc}
   relatedArticles={related.map((item) => ({
     title: item.data.title,
-    href: `/blog/${item.slug}`,
+    href: `/blog/${item.id}`,
     description: item.data.description,
   }))}
 >

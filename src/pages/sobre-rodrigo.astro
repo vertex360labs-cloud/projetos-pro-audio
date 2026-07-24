@@ -1,0 +1,10 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import CTA from '@/components/CTA.astro';
+---
+<BaseLayout title="Sobre Rodrigo Chiacchio" description="Conheça a trajetória de Rodrigo Chiacchio no mercado brasileiro de áudio e tecnologia." canonical="/sobre-rodrigo">
+  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Sobre Rodrigo'}]}/><span class="eyebrow">Experiência, mercado e contexto</span><h1 class="title-lg">Rodrigo Chiacchio</h1><p class="lead">Especialista em áudio profissional com quase 30 anos de atuação no mercado brasileiro.</p></div></header>
+  <section class="section"><div class="container split"><div class="split-media"><img src="/images/real/consultor-de-vendas-oficial-music-company-j9uZqxm76AWQ9cNS.jpg" alt="Rodrigo Chiacchio" width="900" height="680"/></div><div class="split-copy"><h2>Da tecnologia à decisão de compra.</h2><p>A trajetória de Rodrigo passou por Mastermídia, Quanta Brasil, Next Audio, Quanta Store, Music Company e Quanta Pro, acompanhando mudanças profundas em gravação, produção, distribuição e integração de áudio.</p><p>Hoje, o Projetos Pro Audio reúne conteúdo, experiência comercial e relacionamento técnico para ajudar profissionais e empresas a avaliar equipamentos e projetos com mais clareza.</p><p>Rodrigo atua em soluções ligadas à Music Company e na gestão do Marketing Digital da Quanta Pro. A marca Projetos Pro Audio é independente e encaminha cada oportunidade para a estrutura adequada.</p><ul class="check-list"><li>Studio como área comercial principal</li><li>Live Sound como conteúdo e geração de oportunidades</li><li>Recomendação sem esconder limitações ou alternativas</li></ul></div></div></section>
+  <CTA title="Vamos conversar sobre o seu sistema?" />
+</BaseLayout>

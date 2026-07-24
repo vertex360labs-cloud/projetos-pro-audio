@@ -1,316 +1,283 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import FAQ from '@/components/FAQ.astro';
-import CTA from '@/components/CTA.astro';
-import { homeFAQ, objectionsFAQ } from '@/data/faq';
+import { homeFAQ } from '@/data/faq';
 import { faqSchema } from '@/utils/schema';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const studioAreas = [
+  ['MON', 'Monitoração', 'Mais clareza para decidir com confiança no seu estúdio.', '/studio/monitoracao'],
+  ['I/O', 'Conversão e interfaces', 'Qualidade na entrada e saída faz toda a diferença.', '/studio/interfaces-e-conversao'],
+  ['O/B', 'Outboard e setup híbrido', 'Cor, controle e desempenho na medida certa.', '/studio/outboard-e-setup-hibrido'],
+  ['360', 'Projetos completos', 'Soluções integradas do projeto à implementação.', '/studio/projetos-completos'],
+];
+
+const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESONUS', 'VIOLET AUDIO'];
 ---
 
 <BaseLayout schema={faqSchema(homeFAQ)}>
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-content">
-        <div class="hero-copy">
-          <span class="eyebrow">Consultoria e Projetos</span>
-          <h1 class="title-hero">A excelência técnica por trás dos melhores sistemas de áudio</h1>
-          <p class="lead">Projetos personalizados, tecnologia de ponta e resultados que elevam o padrão do áudio profissional — de estúdios e salas imersivas a live sound, RF e integração premium.</p>
-          <div class="btn-row">
-            <a href="#servicos" class="btn btn-primary">Conheça nossos serviços</a>
-            <a href="#contato" class="btn btn-secondary">Solicitar diagnóstico técnico</a>
+  <main class="home-redesign">
+    <section class="visual-hero">
+      <div class="visual-hero-copy">
+        <span class="kicker">Decisões técnicas mais inteligentes</span>
+        <h1>Qual é o próximo upgrade certo para o seu estúdio?</h1>
+        <p>Monitoração, conversão, outboard e integração avaliados como um único sistema — antes da compra.</p>
+        <div class="btn-row">
+          <a href="/diagnostico-de-setup" class="btn btn-primary">Analisar meu setup</a>
+          <a href="/conteudos" class="editorial-link">Ver conteúdos <span>→</span></a>
+        </div>
+      </div>
+      <div class="visual-hero-media">
+        <img src="/images/real/rodrigo-podcast-blm5RXanrJM9tVIo.jpg" alt="Rodrigo Chiacchio em ambiente profissional de áudio" width="612" height="524" />
+        <div class="hero-caption"><strong>Rodrigo Chiacchio</strong><span>Quase 30 anos em áudio e tecnologia</span></div>
+      </div>
+    </section>
+
+    <section class="brand-strip" aria-label="Marcas e ecossistemas">
+      <div class="brand-track">{brands.map((brand) => <span>{brand}</span>)}</div>
+    </section>
+
+    <section class="home-block">
+      <div class="home-container">
+        <div class="center-title">
+          <span class="kicker">Por onde começar</span>
+          <h2>Onde seu setup precisa evoluir?</h2>
+        </div>
+        <div class="decision-grid">
+          {studioAreas.map(([icon, title, description, href]) => (
+            <a class="decision-card" href={href}>
+              <span class="line-icon">{icon}</span>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <span class="card-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-block services-block">
+      <div class="home-container">
+        <div class="center-title"><h2>Studio e Live Sound</h2></div>
+        <div class="service-grid">
+          <article class="service-card">
+            <img src="/images/real/ssl900_site-OwEpoEGYUBs0ktyw.jpg" alt="Console SSL em estúdio profissional" width="1185" height="667" />
+            <div class="service-copy">
+              <span class="kicker">Atuação principal</span>
+              <h3>Studio</h3>
+              <p>Soluções completas para produção, mixagem e masterização.</p>
+              <ul><li>Upgrade</li><li>Monitoração</li><li>Conversão</li><li>Outboard</li></ul>
+              <a href="/studio">Saiba mais →</a>
+            </div>
+          </article>
+          <article class="service-card">
+            <img src="/images/live-sound-foh-v2.png" alt="Console profissional na posição de front of house em teatro" width="1536" height="1024" />
+            <div class="service-copy">
+              <span class="kicker">Conteúdo e encaminhamento</span>
+              <h3>Live Sound</h3>
+              <p>Sistemas confiáveis para sonorização e produção de eventos.</p>
+              <ul><li>StudioLive</li><li>Áudio em rede</li><li>Dante</li><li>Monitoração pessoal</li></ul>
+              <a href="/live-sound">Saiba mais →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-block diagnostic-wrap">
+      <div class="home-container diagnostic-panel">
+        <div class="diagnostic-copy">
+          <span class="kicker">Diagnóstico de setup</span>
+          <h2>Seu próximo investimento começa com um bom diagnóstico.</h2>
+          <p>Conte o que você usa hoje, onde está o gargalo e o resultado que procura. O contexto vem antes da recomendação.</p>
+          <div class="diagnostic-points"><span>Setup atual</span><span>Principal desafio</span><span>Faixa de investimento</span></div>
+          <a class="btn btn-primary" href="/diagnostico-de-setup">Enviar meu setup</a>
+          <small>Seus dados são usados apenas para a análise e o contato solicitado.</small>
+        </div>
+        <div class="diagnostic-image">
+          <img src="/images/real/cabeamento-redco-mogami-para-estudios-EqZymYEyaSWho9o9.png" alt="Detalhe de integração e cabeamento em sistema profissional" width="486" height="357" />
+        </div>
+      </div>
+    </section>
+
+    <section class="home-block">
+      <div class="home-container">
+        <div class="center-title"><span class="kicker">Editorial independente</span><h2>Conteúdo para decidir melhor</h2></div>
+        <div class="content-cards">
+          {posts.map((post) => (
+            <a href={`/blog/${post.id}`} class="content-card">
+              {post.data.heroImage && <img src={post.data.heroImage} alt="" width="640" height="360" />}
+              <div><span class="kicker">{post.data.tags[0] ?? 'Conteúdo'}</span><h3>{post.data.title}</h3><p>{post.data.description}</p><strong>Ler artigo →</strong></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-block case-block">
+      <div class="home-container">
+        <div class="center-title"><span class="kicker">Aplicação real</span><h2>Projetos e setups reais</h2></div>
+        <article class="case-card">
+          <img src="/images/real/projetos-ssl-swa-948-delta-Bf7ipliE8L0dOPSu.jpg" alt="Projeto de integração SSL em estúdio" width="994" height="425" />
+          <div class="case-copy">
+            <span class="kicker">Integração SSL</span>
+            <h3>Superfície, interfaces e workflow pensados como um sistema.</h3>
+            <div class="case-steps">
+              <div><strong>01 · Problema</strong><p>Equipamentos isolados e operação com atrito.</p></div>
+              <div><strong>02 · Decisão</strong><p>Planejamento conjunto de controle, conversão e conexão.</p></div>
+              <div><strong>03 · Resultado</strong><p>Workflow mais claro, integrado e preparado para evoluir.</p></div>
+            </div>
+            <a href="/projetos">Ver projetos e setups →</a>
           </div>
-        </div>
+        </article>
+      </div>
+    </section>
 
-        <div class="hero-kpis">
-          <div class="hero-kpi">
-            <strong>+ precisão</strong>
-            <span class="muted">na especificação e expansão do sistema</span>
-          </div>
-          <div class="hero-kpi">
-            <strong>- retrabalho</strong>
-            <span class="muted">em compras, upgrades e integrações erradas</span>
-          </div>
-          <div class="hero-kpi">
-            <strong>+ performance</strong>
-            <span class="muted">sonora, operacional e estratégica</span>
-          </div>
+    <section class="home-block about-block">
+      <div class="home-container about-grid">
+        <img src="/images/real/rodrigo-podcast-blm5RXanrJM9tVIo.jpg" alt="Rodrigo Chiacchio em estúdio de podcast" width="612" height="524" />
+        <div class="about-copy">
+          <span class="kicker">Experiência para orientar</span>
+          <h2>Decisões importantes pedem contexto de mercado e visão técnica.</h2>
+          <p>Rodrigo Chiacchio atua há quase 30 anos no mercado de áudio e tecnologia, com passagens por Mastermídia, Quanta Brasil, Next Audio, Quanta Store, Music Company e Quanta Pro.</p>
+          <p>A proposta não é empurrar uma lista pronta: é identificar o que realmente muda o resultado, o workflow ou a confiabilidade do sistema.</p>
+          <a href="/sobre-rodrigo">Conheça minha trajetória →</a>
+        </div>
+        <div class="about-stats">
+          <div><strong>Quase 30 anos</strong><span>em áudio e tecnologia</span></div>
+          <div><strong>Studio + Live</strong><span>visão de sistemas completos</span></div>
+          <div><strong>Mercado brasileiro</strong><span>rede técnica e comercial</span></div>
         </div>
       </div>
     </section>
 
-    <section class="pillars section-no-top" id="servicos">
-      <div class="container">
-        <div class="pillars-grid">
-          <article class="pillar">
-            <div class="pillar-icon" aria-hidden="true"></div>
-            <h3>Consultoria</h3>
-            <p class="muted">Análise técnica completa para decisões assertivas e seguras antes do investimento.</p>
-          </article>
-          <article class="pillar">
-            <div class="pillar-icon" aria-hidden="true"></div>
-            <h3>Projetos</h3>
-            <p class="muted">Projetos acústicos, eletroacústicos e de workflow com precisão e inteligência.</p>
-          </article>
-          <article class="pillar">
-            <div class="pillar-icon" aria-hidden="true"></div>
-            <h3>Tecnologia</h3>
-            <p class="muted">Integração de sistemas avançados, immersive audio, RF e soluções de última geração.</p>
-          </article>
-          <article class="pillar">
-            <div class="pillar-icon" aria-hidden="true"></div>
-            <h3>Suporte</h3>
-            <p class="muted">Acompanhamento técnico em todas as etapas do seu projeto, da decisão à evolução.</p>
-          </article>
-        </div>
+    <FAQ items={homeFAQ} title="Dúvidas antes de começar" />
+
+    <section class="final-cta">
+      <div class="home-container">
+        <div><span class="kicker">Próximo passo</span><h2>Vamos analisar o próximo passo do seu projeto?</h2></div>
+        <div class="final-actions"><a href="/contato" class="btn btn-secondary">Falar com Rodrigo</a><a href="/diagnostico-de-setup" class="btn btn-primary">Enviar meu setup</a></div>
       </div>
     </section>
-
-    <section class="section backdrop-grid" id="expertise">
-      <div class="container grid grid-2 split-feature">
-        <div class="feature-copy">
-          <span class="eyebrow">Expertise</span>
-          <h2 class="title-lg">Do conceito à operação perfeita.</h2>
-          <p class="lead">Atuamos em estúdios, espaços de mixagem, locadoras, igrejas, ambientes corporativos e projetos de áudio imersivo com a mesma busca por performance, coerência de sistema e padrão de referência.</p>
-          <div class="btn-row">
-            <a href="#processo" class="btn btn-outline">Saiba mais</a>
-          </div>
-        </div>
-
-        <div class="mosaic" aria-label="Galeria de expertise visual">
-          <div class="mosaic-item large"><img src="/images/expertise-mic.jpg" alt="Detalhe de microfone em ambiente técnico" width="600" height="420" loading="lazy" /></div>
-          <div class="mosaic-item"><img src="/images/expertise-diagram.jpg" alt="Diagrama técnico e sistema de áudio" width="300" height="210" loading="lazy" /></div>
-          <div class="mosaic-item"><img src="/images/expertise-theatre.jpg" alt="Auditório com projeto de áudio profissional" width="300" height="210" loading="lazy" /></div>
-          <div class="mosaic-item"><img src="/images/expertise-blueprint.jpg" alt="Blueprint e modelagem de projeto acústico" width="300" height="210" loading="lazy" /></div>
-          <div class="mosaic-item"><img src="/images/expertise-linearray.jpg" alt="Sistema line array em instalação profissional" width="300" height="210" loading="lazy" /></div>
-          <div class="mosaic-item"><img src="/images/expertise-graph.jpg" alt="Gráfico técnico de resposta e medição" width="300" height="210" loading="lazy" /></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="technical-strip section-tight" id="tecnologia">
-      <div class="container">
-        <div class="technical-grid">
-          <article class="technical-item">
-            <div class="technical-mark" aria-hidden="true"></div>
-            <div>
-              <h3>Áudio imersivo</h3>
-              <p class="muted">Projetos Dolby Atmos e sistemas imersivos de alta performance.</p>
-            </div>
-          </article>
-          <article class="technical-item">
-            <div class="technical-mark" aria-hidden="true"></div>
-            <div>
-              <h3>Sistemas sem fio</h3>
-              <p class="muted">Soluções profissionais de RF, monitoração e controle.</p>
-            </div>
-          </article>
-          <article class="technical-item">
-            <div class="technical-mark" aria-hidden="true"></div>
-            <div>
-              <h3>Acústica avançada</h3>
-              <p class="muted">Medições, simulação e tratamento acústico de precisão.</p>
-            </div>
-          </article>
-          <article class="technical-item">
-            <div class="technical-mark" aria-hidden="true"></div>
-            <div>
-              <h3>Engenharia de verdade</h3>
-              <p class="muted">Metodologia, experiência e tecnologia em cada detalhe do projeto.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container">
-        <span class="eyebrow">Mercado e aplicações</span>
-        <h2 class="title-lg" style="margin-top:14px;">Mais do que indicação de equipamento: <span class="accent">clareza técnica</span></h2>
-        <p class="lead">Projetos, curadoria, especificação, integração e visão de crescimento para sistemas que precisam performar no mundo real.</p>
-
-        <div class="grid grid-3" style="margin-top:28px;">
-          <article class="card" style="padding:28px;">
-            <h3 class="title-md"><a href="/servicos/consultoria-estudio-profissional">Estúdios profissionais</a></h3>
-            <p class="muted" style="margin-top:10px;">Projeto de setup, monitoração, fluxo híbrido, interfaces, microfones, acústica e expansão futura.</p>
-          </article>
-          <article class="card" style="padding:28px;">
-            <h3 class="title-md"><a href="/servicos/projetos-dolby-atmos">Dolby Atmos & immersive</a></h3>
-            <p class="muted" style="margin-top:10px;">Salas 7.1.4, monitoração, integração de workflow e especificação para produção imersiva premium.</p>
-          </article>
-          <article class="card" style="padding:28px;">
-            <h3 class="title-md"><a href="/servicos/consultoria-live-sound">Live sound & touring</a></h3>
-            <p class="muted" style="margin-top:10px;">Sistemas com foco em confiabilidade, cobertura, operação, padronização e retorno de investimento.</p>
-          </article>
-          <article class="card" style="padding:28px;">
-            <h3 class="title-md"><a href="/servicos/sistemas-rf-wireless">RF, wireless & IEM</a></h3>
-            <p class="muted" style="margin-top:10px;">Planejamento técnico para ambientes críticos, maior densidade de canais e operação mais previsível.</p>
-          </article>
-          <article class="card" style="padding:28px;">
-            <h3 class="title-md">Locadoras de áudio</h3>
-            <p class="muted" style="margin-top:10px;">Curadoria de upgrade de parque para elevar margem, percepção de valor e consistência de entrega.</p>
-          </article>
-          <article class="card" style="padding:28px;">
-            <h3 class="title-md"><a href="/servicos/projetos-para-igrejas">Igrejas, auditórios & venues</a></h3>
-            <p class="muted" style="margin-top:10px;">Cobertura, inteligibilidade, operação simplificada e sistema preparado para rotina real de uso.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container grid grid-2">
-        <div>
-          <span class="eyebrow">O problema real</span>
-          <h2 class="title-lg" style="margin-top:14px;">O problema quase nunca é falta de equipamento. É falta de direção.</h2>
-          <p class="lead">Você pode ter orçamento, boas marcas e vontade de montar algo de alto nível. Mesmo assim, o sistema pode nascer errado.</p>
-          <ul class="check-list">
-            <li>Sala que não traduz e monitoração incompatível com o ambiente</li>
-            <li>Interface subdimensionada para a expansão desejada</li>
-            <li>Wireless inseguro em eventos críticos</li>
-            <li>Locadora investindo sem visão clara de margem e retorno</li>
-            <li>Projeto caro que vira coleção de peças em vez de operação eficiente</li>
-          </ul>
-        </div>
-        <div class="card authority-panel" style="padding:34px;">
-          <h3 class="title-md">O que muda com projeto técnico sério</h3>
-          <div class="grid grid-2" style="margin-top:24px; gap:14px;">
-            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
-              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">+ segurança</strong>
-              <span class="muted">na decisão antes da compra</span>
-            </div>
-            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
-              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">+ coerência</strong>
-              <span class="muted">entre sala, operação e equipamento</span>
-            </div>
-            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
-              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">- desperdício</strong>
-              <span class="muted">com retrabalho e escolhas erradas</span>
-            </div>
-            <div class="card" style="padding:20px; background:rgba(255,255,255,.03); box-shadow:none;">
-              <strong style="display:block; font-size:1.25rem; margin-bottom:6px;">+ escalabilidade</strong>
-              <span class="muted">para crescer sem travas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container">
-        <span class="eyebrow">Clientes e referência de mercado</span>
-        <div class="brand-strip">
-          <a class="brand-chip" href="/servicos/projetos-dolby-atmos">Dolby<br/>Atmos</a>
-          <a class="brand-chip" href="/marcas/pmc">PMC</a>
-          <a class="brand-chip" href="/marcas/sennheiser">Sennheiser</a>
-          <a class="brand-chip" href="/marcas/ssl">Solid State Logic</a>
-          <a class="brand-chip" href="/comparativos/ssl-vs-avid">Avid</a>
-          <div class="brand-chip">DiGiCo</div>
-          <a class="brand-chip" href="/marcas/shure">Shure</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="processo">
-      <div class="container">
-        <span class="eyebrow">Processo</span>
-        <h2 class="title-lg" style="margin-top:14px;">Um processo claro para transformar dúvida em decisão segura</h2>
-        <div class="process-grid">
-          <article class="card process-card" data-step="01">
-            <div class="process-number">01</div>
-            <h3 class="title-md">Diagnóstico</h3>
-            <p class="muted" style="margin-top:12px;">Entendimento do cenário, objetivo, ambiente, orçamento, operação e gargalos reais.</p>
-          </article>
-          <article class="card process-card" data-step="02">
-            <div class="process-number">02</div>
-            <h3 class="title-md">Direção técnica</h3>
-            <p class="muted" style="margin-top:12px;">Análise de prioridades, correção de premissas erradas e definição do caminho ideal.</p>
-          </article>
-          <article class="card process-card" data-step="03">
-            <div class="process-number">03</div>
-            <h3 class="title-md">Projeto & especificação</h3>
-            <p class="muted" style="margin-top:12px;">Solução organizada com lógica de sistema, compatibilidade e visão de crescimento.</p>
-          </article>
-          <article class="card process-card" data-step="04">
-            <div class="process-number">04</div>
-            <h3 class="title-md">Implementação orientada</h3>
-            <p class="muted" style="margin-top:12px;">Mais segurança na compra, montagem, contratação e evolução do projeto.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container">
-        <span class="eyebrow">Comparativo</span>
-        <h2 class="title-lg" style="margin-top:14px;">Comprar primeiro é caro. Projetar primeiro é inteligente.</h2>
-        <div class="comparison-shell" style="margin-top:24px;">
-          <table aria-label="Comparativo de abordagem">
-            <thead>
-              <tr>
-                <th>Sem projeto</th>
-                <th>Com Projetos Pro Audio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Compra por impulso, influência ou moda</td>
-                <td>Decisão baseada no contexto real do projeto</td>
-              </tr>
-              <tr>
-                <td>Risco alto de incompatibilidade</td>
-                <td>Sistema coerente e escalável</td>
-              </tr>
-              <tr>
-                <td>Retrabalho e gastos duplicados</td>
-                <td>Investimento com direção e prioridade</td>
-              </tr>
-              <tr>
-                <td>Operação confusa e pouco previsível</td>
-                <td>Workflow claro para uso cotidiano</td>
-              </tr>
-              <tr>
-                <td>Performance abaixo do esperado</td>
-                <td>Maior previsibilidade de resultado</td>
-              </tr>
-              <tr>
-                <td>Expansão improvisada</td>
-                <td>Visão técnica de longo prazo</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section objection-grid">
-      <div class="container grid grid-2">
-        <div>
-          <span class="eyebrow">Objeções</span>
-          <h2 class="title-lg" style="margin-top:14px;">Talvez você esteja pensando nisso agora</h2>
-          <FAQ items={objectionsFAQ} hideHeader id="objections" openFirst class="" />
-        </div>
-
-        <div class="card authority-panel" style="padding:34px;">
-          <span class="eyebrow">Autoridade</span>
-          <h2 class="title-lg" style="margin-top:14px;">Nós pensamos o áudio como sistema, não como vitrine</h2>
-          <p class="lead">Uma sala não é só monitor. Um touring rig não é só SPL. Um setup profissional não é só marca boa. Performance real acontece quando acústica, monitoração, captação, conversão, operação, rede, RF e uso prático trabalham juntos.</p>
-          <ul class="check-list">
-            <li>Visão integrada de performance sonora e operacional</li>
-            <li>Curadoria técnica baseada em contexto</li>
-            <li>Estratégia para expansão sem gargalos</li>
-            <li>Decisão premium com menos risco</li>
-          </ul>
-          <div class="btn-row">
-            <a href="#contato" class="btn btn-primary">Solicitar diagnóstico</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTA
-      title="Sobre o seu projeto?"
-      description="Nossa equipe está pronta para entender suas necessidades e entregar soluções que fazem a diferença — com visão técnica, critério e direção antes do investimento."
-    />
-
-    <FAQ items={homeFAQ} />
   </main>
 </BaseLayout>
+
+<style>
+  .home-redesign { --home-width: 1280px; --space-section: 58px; --space-content: 26px; --space-cards: 16px; background: #f6f6f3; color: #111517; }
+  .home-container { width: min(calc(100% - 48px), var(--home-width)); margin-inline: auto; }
+  .kicker { display: inline-block; color: #23628d; font-size: .68rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+  .visual-hero { display: grid; grid-template-columns: minmax(0, 44fr) minmax(0, 56fr); height: 500px; background: #f8f8f6; border-bottom: 1px solid #d7d7d2; }
+  .visual-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 46px clamp(34px, 4.5vw, 72px); }
+  .visual-hero-copy h1 { max-width: 13ch; margin-top: 11px; font-size: clamp(3rem, 4vw, 3.5rem); line-height: 1; letter-spacing: -.055em; }
+  .visual-hero-copy > p { max-width: 48ch; margin-top: 16px; color: #5d6061; font-size: clamp(1rem, 1.25vw, 1.0625rem); line-height: 1.5; }
+  .visual-hero-copy .btn-row { margin-top: 22px; }
+  .visual-hero-copy .btn { min-height: 44px; padding-inline: 18px; font-size: .84rem; }
+  .visual-hero-media { position: relative; min-height: 500px; overflow: hidden; background: #202426; }
+  .visual-hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.13), transparent 40%), linear-gradient(0deg, rgba(0,0,0,.3), transparent 38%); }
+  .visual-hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 34%; filter: saturate(.82) contrast(1.04); }
+  .hero-caption { position: absolute; z-index: 1; left: 22px; bottom: 20px; display: grid; color: #fff; font-size: .86rem; }
+  .hero-caption span { font-size: .78rem; opacity: .82; }
+  .editorial-link { display: inline-flex; align-items: center; gap: 16px; border-bottom: 1px solid #111; padding: 0 0 4px; font-weight: 750; }
+  .brand-strip { background: #fff; border-bottom: 1px solid #d7d7d2; }
+  .brand-track { width: min(calc(100% - 48px), var(--home-width)); min-height: 68px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; overflow: hidden; }
+  .brand-track span { color: #25292b; font-size: clamp(.7rem, 1.05vw, .92rem); font-weight: 900; letter-spacing: .01em; white-space: nowrap; }
+  .home-block { padding: var(--space-section) 0; border-bottom: 1px solid #dddcd7; }
+  .center-title { margin-bottom: var(--space-content); text-align: center; }
+  .center-title h2 { margin-top: 5px; font-size: clamp(1.75rem, 2.4vw, 2.125rem); letter-spacing: -.045em; }
+  .decision-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-cards); }
+  .decision-card { position: relative; min-height: 188px; padding: 21px; background: #fff; border: 1px solid #d4d4d0; border-radius: 5px; transition: transform .2s, box-shadow .2s; }
+  .decision-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,.07); }
+  .line-icon { display: grid; place-items: center; width: 44px; height: 35px; border: 1px solid #1a1d1f; border-radius: 4px; font-size: .62rem; font-weight: 900; letter-spacing: .06em; }
+  .decision-card h3 { margin-top: 16px; font-size: 1.08rem; }
+  .decision-card p { margin-top: 7px; color: #626566; font-size: .82rem; line-height: 1.45; }
+  .card-arrow { position: absolute; right: 18px; bottom: 13px; font-size: 1.25rem; }
+  .services-block { background: #ecece9; }
+  .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-cards); }
+  .service-card { display: grid; grid-template-columns: 1.25fr .9fr; min-height: 294px; max-height: 310px; overflow: hidden; background: #fff; border: 1px solid #d4d4d0; border-radius: 6px; }
+  .service-card > img { width: 100%; height: 100%; object-fit: cover; }
+  .service-copy { padding: 22px 20px; }
+  .service-copy h3 { margin-top: 5px; font-size: 1.42rem; }
+  .service-copy p { margin-top: 8px; color: #626566; font-size: .82rem; line-height: 1.45; }
+  .service-copy ul { margin-top: 12px; padding-left: 16px; color: #444; font-size: .75rem; line-height: 1.45; }
+  .service-copy a, .case-copy > a, .about-copy a { display: inline-block; margin-top: 13px; color: #174f79; font-size: .82rem; font-weight: 800; }
+  .diagnostic-wrap { background: #f1f1ee; }
+  .diagnostic-panel { display: grid; grid-template-columns: 1fr 1.08fr; min-height: 320px; max-height: 350px; overflow: hidden; background: white; border: 1px solid #d4d4d0; border-radius: 6px; }
+  .diagnostic-copy { padding: clamp(28px, 3vw, 42px); }
+  .diagnostic-copy h2 { max-width: 17ch; margin-top: 7px; font-size: clamp(1.75rem, 2.4vw, 2.125rem); }
+  .diagnostic-copy p { max-width: 58ch; margin-top: 10px; color: #606364; font-size: .9rem; line-height: 1.5; }
+  .diagnostic-points { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0; }
+  .diagnostic-points span { padding: 8px 10px; background: #f1f2f1; border: 1px solid #d8d8d4; border-radius: 3px; font-size: .72rem; }
+  .diagnostic-copy .btn { min-height: 43px; font-size: .82rem; }
+  .diagnostic-copy small { display: block; margin-top: 9px; color: #777; font-size: .68rem; }
+  .diagnostic-image img { width: 100%; height: 100%; object-fit: cover; }
+  .content-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-cards); }
+  .content-card { overflow: hidden; background: #fff; border: 1px solid #d4d4d0; border-radius: 5px; }
+  .content-card img { width: 100%; aspect-ratio: 16/7.2; object-fit: cover; filter: saturate(.8); }
+  .content-card > div { padding: 19px 20px; }
+  .content-card h3 { margin-top: 6px; font-size: 1.15rem; }
+  .content-card p { margin-top: 8px; color: #656869; font-size: .81rem; line-height: 1.45; }
+  .content-card strong { display: inline-block; margin-top: 13px; color: #174f79; font-size: .74rem; }
+  .case-block { background: #efefec; }
+  .case-card { display: grid; grid-template-columns: .95fr 1.25fr; overflow: hidden; background: white; border: 1px solid #d2d2ce; border-radius: 6px; }
+  .case-card > img { width: 100%; height: 100%; min-height: 290px; max-height: 310px; object-fit: cover; }
+  .case-copy { padding: 28px; }
+  .case-copy h3 { max-width: 25ch; margin-top: 6px; font-size: clamp(1.55rem, 2.2vw, 2rem); }
+  .case-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; padding-top: 17px; border-top: 1px solid #ddd; }
+  .case-steps strong { font-size: .77rem; text-transform: uppercase; }
+  .case-steps p { margin-top: 8px; color: #676a6b; font-size: .8rem; }
+  .about-block { background: white; }
+  .about-grid { display: grid; grid-template-columns: .68fr 1.5fr .7fr; gap: 28px; align-items: center; }
+  .about-grid > img { width: 100%; height: clamp(320px, 26vw, 370px); object-fit: cover; border-radius: 5px; }
+  .about-copy h2 { max-width: 24ch; margin-top: 6px; font-size: clamp(1.75rem, 2.4vw, 2.125rem); }
+  .about-copy p { margin-top: 10px; color: #606364; font-size: .87rem; line-height: 1.5; }
+  .about-stats { display: grid; gap: 17px; }
+  .about-stats > div { padding-top: 10px; border-top: 2px solid #15191b; }
+  .about-stats strong, .about-stats span { display: block; }
+  .about-stats span { color: #6b6d6e; font-size: .78rem; }
+  .home-redesign :global(.section) { padding-block: 52px; }
+  .home-redesign :global(.accordion-trigger) { padding-block: 16px; font-size: .9rem; }
+  .home-redesign :global(.accordion-body) { padding-bottom: 16px; }
+  .final-cta { padding: 25px 0; color: white; background: #11191d; }
+  .final-cta .home-container { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+  .final-cta h2 { max-width: 24ch; margin-top: 4px; font-size: clamp(1.65rem, 2.3vw, 2.1rem); }
+  .final-cta .kicker { color: #86b7d7; }
+  .final-actions { display: flex; gap: 12px; }
+  .final-actions .btn-primary { background: white; color: #111; }
+  .final-actions .btn-secondary { background: transparent; color: white; border-color: #889296; }
+
+  @media (max-width: 980px) {
+    .home-redesign { --space-section: 52px; }
+    .visual-hero { grid-template-columns: 1fr; height: auto; }
+    .visual-hero-copy { min-height: 420px; }
+    .visual-hero-media { min-height: 440px; }
+    .decision-grid, .content-cards { grid-template-columns: repeat(2, 1fr); }
+    .service-grid { grid-template-columns: 1fr; }
+    .service-card { max-height: none; }
+    .about-grid { grid-template-columns: .75fr 1.25fr; }
+    .about-stats { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .home-redesign { --space-section: 44px; }
+    .home-container { width: min(calc(100% - 28px), var(--home-width)); }
+    .visual-hero-copy { min-height: auto; padding: 48px 22px; }
+    .visual-hero-copy h1 { font-size: clamp(2.65rem, 13vw, 4rem); }
+    .visual-hero-media { min-height: 430px; }
+    .brand-track { min-height: 70px; justify-content: flex-start; overflow-x: auto; }
+    .home-block { padding: var(--space-section) 0; }
+    .decision-grid, .content-cards { grid-template-columns: 1fr; }
+    .decision-card { min-height: 210px; }
+    .service-card { grid-template-columns: 1fr; max-height: none; }
+    .service-card > img { aspect-ratio: 16/10; }
+    .diagnostic-panel, .case-card, .about-grid { grid-template-columns: 1fr; max-height: none; }
+    .diagnostic-image { min-height: 280px; }
+    .case-card > img { min-height: 260px; }
+    .case-steps { grid-template-columns: 1fr; }
+    .about-stats { grid-column: auto; grid-template-columns: 1fr; }
+    .final-cta .home-container { align-items: stretch; flex-direction: column; }
+    .final-actions { flex-direction: column; }
+  }
+</style>

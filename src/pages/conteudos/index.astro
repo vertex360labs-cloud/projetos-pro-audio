@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const pillars = [
+  ['Vale o upgrade?', 'Quando trocar, quando manter e como ordenar investimentos.', '/conteudos/vale-o-upgrade'],
+  ['Comparativos', 'Diferenças relevantes, públicos e limitações de cada opção.', '/comparativos/pmc-vs-genelec'],
+  ['Guias de compra', 'Critérios para montar uma lista coerente com o trabalho.', '/guias/como-montar-estudio-dolby-atmos'],
+  ['Reviews', 'Produtos analisados dentro de aplicações e sistemas reais.', '/reviews'],
+  ['Projetos e setups', 'Decisões, integração, aprendizados e próximos passos.', '/projetos'],
+  ['Radar Pro Audio', 'Mudanças que realmente afetam uma decisão de compra ou projeto.', '/conteudos/radar-pro-audio'],
+  ['Dream Studio Sessions', 'Sessões, cadeias de sinal e bastidores técnicos.', '/conteudos/dream-studio-sessions'],
+];
+---
+<BaseLayout title="Conteúdos" description="Guias, comparativos, reviews e projetos para tomar decisões melhores em áudio profissional." canonical="/conteudos">
+  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Conteúdos'}]} /><span class="eyebrow">Biblioteca técnica</span><h1 class="title-lg">Conteúdo para decidir melhor.</h1><p class="lead">Informação técnica aplicada a compra, integração, operação e evolução de sistemas profissionais de áudio.</p></div></header>
+  <section class="section section-alt"><div class="container"><div class="card-grid">{pillars.map(([title,description,href],i)=><article class="card card-body"><span class="card-icon">{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{description}</p><a class="text-link" href={href}>Explorar</a></article>)}</div></div></section>
+  <section class="section"><div class="container"><div class="section-heading"><span class="eyebrow">Publicações</span><h2>Artigos disponíveis</h2></div><div class="blog-grid">{posts.map(post=><a class="card blog-card" href={`/blog/${post.id}`}>{post.data.heroImage&&<div class="blog-card-image"><img src={post.data.heroImage} alt="" width="640" height="360" loading="lazy"/></div>}<div class="blog-card-body"><span class="tag">{post.data.tags[0]??'Artigo'}</span><h3>{post.data.title}</h3><p>{post.data.description}</p></div></a>)}</div></div></section>
+</BaseLayout>

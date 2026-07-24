@@ -18,3 +18,4 @@ dist/
 
 # logs
 npm-debug.log*
+.vercel

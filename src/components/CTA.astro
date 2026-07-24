@@ -1,105 +1,167 @@
 ---
 interface Props {
   eyebrow?: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   showForm?: boolean;
+  compact?: boolean;
 }
 
-const { eyebrow = 'Vamos conversar', title, description, showForm = true } = Astro.props;
+const {
+  eyebrow = 'Diagnóstico de setup',
+  title = 'Qual é a próxima decisão do seu sistema?',
+  description = 'Conte o que você usa hoje, onde está o gargalo e o que pretende alcançar. A resposta será direcionada para a pessoa mais adequada.',
+  showForm = true,
+  compact = false,
+} = Astro.props;
 ---
 
-<section class="section" id="contato">
+<section class:list={['section', 'cta-section', { 'cta-compact': compact }]} id="contato">
   <div class="container">
     <div class="cta-panel">
-      <div class="cta-copy">
+      <div class="cta-intro">
         <span class="eyebrow">{eyebrow}</span>
-        <h2 class="title-lg" style="margin-top:14px;">{title}</h2>
-        <p class="lead">{description}</p>
-
-        {showForm && (
-          <form id="leadForm" class="contact-form">
-            <div class="field-grid">
-              <div class="field">
-                <label for="nome">Nome</label>
-                <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
-              </div>
-              <div class="field">
-                <label for="empresa">Empresa</label>
-                <input id="empresa" name="empresa" type="text" placeholder="Sua empresa ou projeto" />
-              </div>
-            </div>
-
-            <div class="field-grid">
-              <div class="field">
-                <label for="whatsapp">WhatsApp</label>
-                <input id="whatsapp" name="whatsapp" type="tel" placeholder="(00) 00000-0000" required />
-              </div>
-              <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="voce@empresa.com" required />
-              </div>
-            </div>
-
-            <div class="field-grid">
-              <div class="field">
-                <label for="tipo">Tipo de projeto</label>
-                <select id="tipo" name="tipo" required>
-                  <option value="">Selecione</option>
-                  <option>Estúdio profissional</option>
-                  <option>Dolby Atmos / immersive</option>
-                  <option>Live sound / touring</option>
-                  <option>Locadora de áudio</option>
-                  <option>RF / wireless / IEM</option>
-                  <option>Igreja / auditório / venue</option>
-                  <option>Curadoria de setup</option>
-                  <option>Outro</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="investimento">Faixa de investimento</label>
-                <select id="investimento" name="investimento">
-                  <option value="">Selecione</option>
-                  <option>Até R$ 30 mil</option>
-                  <option>R$ 30 mil a R$ 80 mil</option>
-                  <option>R$ 80 mil a R$ 200 mil</option>
-                  <option>R$ 200 mil a R$ 500 mil</option>
-                  <option>Acima de R$ 500 mil</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="cenario">Descreva seu cenário atual</label>
-              <textarea id="cenario" name="cenario" placeholder="Conte brevemente o contexto, os equipamentos já existentes e o objetivo do projeto"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Fale com um especialista</button>
-            <p class="form-note">Front-end pronto para Vercel. Conecte este formulário ao seu CRM, e-mail, webhook ou WhatsApp para captação real em produção.</p>
-            <div id="successBox" class="success-box" role="status" aria-live="polite">
-              Pedido recebido. O layout está pronto; o próximo passo é conectar o formulário ao seu canal de captura real.
-            </div>
-          </form>
-        )}
+        <h2>{title}</h2>
+        <p>{description}</p>
+        <ul class="check-list">
+          <li>Contexto antes de recomendação</li>
+          <li>Studio e Live Sound com rotas diferentes</li>
+          <li>Sem compromisso de compra</li>
+        </ul>
       </div>
-      <div class="cta-visual" aria-hidden="true"></div>
+
+      {showForm && (
+        <form id="leadForm" class="contact-form" action="/api/lead" method="post" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="nome">Nome *</label>
+              <input id="nome" name="nome" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="empresa">Empresa ou estúdio</label>
+              <input id="empresa" name="empresa" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="whatsapp">WhatsApp *</label>
+              <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" required />
+            </div>
+            <div class="field">
+              <label for="email">E-mail *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="interesse">Área de interesse *</label>
+              <select id="interesse" name="interesse" required>
+                <option value="">Selecione</option>
+                <option value="studio">Studio</option>
+                <option value="live-sound">Live Sound</option>
+                <option value="igreja">Igreja</option>
+                <option value="eventos-locacao">Eventos / locação</option>
+                <option value="podcast-broadcast">Podcast / broadcast</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="operacao">Tipo de operação</label>
+              <input id="operacao" name="operacao" placeholder="Gravação, mixagem, culto, evento..." />
+            </div>
+            <div class="field">
+              <label for="investimento">Faixa de investimento</label>
+              <select id="investimento" name="investimento">
+                <option value="">Selecione</option>
+                <option>Até R$ 5 mil</option>
+                <option>R$ 5 mil a R$ 15 mil</option>
+                <option>R$ 15 mil a R$ 30 mil</option>
+                <option>R$ 30 mil a R$ 60 mil</option>
+                <option>R$ 60 mil a R$ 100 mil</option>
+                <option>Acima de R$ 100 mil</option>
+                <option>Ainda estou planejando</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="prazo">Prazo</label>
+              <select id="prazo" name="prazo">
+                <option value="">Selecione</option>
+                <option>Imediato</option>
+                <option>Até 3 meses</option>
+                <option>3 a 6 meses</option>
+                <option>6 a 12 meses</option>
+                <option>Ainda sem prazo</option>
+              </select>
+            </div>
+            <div class="field field-full">
+              <label for="cidade">Cidade / Estado</label>
+              <input id="cidade" name="cidade" autocomplete="address-level2" />
+            </div>
+            <div class="field field-full">
+              <label for="equipamentos">Equipamentos atuais</label>
+              <textarea id="equipamentos" name="equipamentos" rows="3" placeholder="Liste os principais itens do sistema atual"></textarea>
+            </div>
+            <div class="field field-full">
+              <label for="cenario">Principal dificuldade e objetivo *</label>
+              <textarea id="cenario" name="cenario" rows="5" required placeholder="O que está limitando o sistema hoje e que resultado você procura?"></textarea>
+            </div>
+          </div>
+
+          <div class="field-honeypot" aria-hidden="true">
+            <label for="website">Não preencha</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="consentimento" value="sim" required />
+            <span>Concordo com o uso destes dados para responder ao meu contato, conforme a <a href="/politica-de-privacidade" target="_blank">Política de Privacidade</a>.</span>
+          </label>
+
+          <input type="hidden" name="origem" value={Astro.url.pathname} />
+          <button type="submit" class="btn btn-primary">Enviar diagnóstico</button>
+          <p class="form-note">Seus dados não serão vendidos. O contato poderá ser encaminhado a uma equipe técnica parceira quando isso for necessário para o atendimento.</p>
+          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      )}
     </div>
   </div>
 </section>
 
 <script>
   const leadForm = document.getElementById('leadForm') as HTMLFormElement | null;
-  const successBox = document.getElementById('successBox');
+  const formStatus = document.getElementById('formStatus');
 
-  leadForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
+  leadForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
     if (!leadForm.checkValidity()) {
       leadForm.reportValidity();
       return;
     }
-    const payload = Object.fromEntries(new FormData(leadForm).entries());
-    console.log('Lead capturado localmente:', payload);
-    successBox?.classList.add('show');
-    leadForm.reset();
+
+    const button = leadForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+    button.disabled = true;
+    button.textContent = 'Enviando…';
+    formStatus!.textContent = '';
+    formStatus!.className = 'form-status';
+
+    try {
+      const payload = Object.fromEntries(new FormData(leadForm).entries());
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.message || 'Não foi possível enviar.');
+
+      formStatus!.textContent = 'Recebemos seu diagnóstico. Você receberá um retorno pelo contato informado.';
+      formStatus!.classList.add('success');
+      window.ppaTrack?.('lead_submit', { interesse: payload.interesse, origem: payload.origem });
+      leadForm.reset();
+    } catch (error) {
+      formStatus!.textContent = error instanceof Error
+        ? error.message
+        : 'Não foi possível enviar agora. Tente novamente em alguns minutos.';
+      formStatus!.classList.add('error');
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Enviar diagnóstico';
+    }
   });
 </script>

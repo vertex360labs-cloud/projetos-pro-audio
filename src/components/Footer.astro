@@ -1,24 +1,46 @@
 ---
-import { SITE } from '@/config/site';
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-top">
+    <div class="footer-grid">
       <a class="footer-logo" href="/">
-        <img src="/images/logo-dark.jpg" alt={SITE.name} width="240" height="40" />
+        <span class="brand-name"><span>Projetos</span><strong>Pro Audio</strong></span>
       </a>
-      <div class="socials">
-        <a class="social" href={SITE.social.instagram} aria-label="Instagram" rel="noopener noreferrer" target="_blank">IG</a>
-        <a class="social" href={SITE.social.linkedin} aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">in</a>
+      <div class="footer-column">
+        <strong>Studio</strong>
+        <a href="/studio/monitoracao">Monitoração</a>
+        <a href="/studio/interfaces-e-conversao">Conversão e interfaces</a>
+        <a href="/studio/outboard-e-setup-hibrido">Outboard e setup híbrido</a>
+        <a href="/studio/projetos-completos">Projetos completos</a>
+      </div>
+      <div class="footer-column">
+        <strong>Live Sound</strong>
+        <a href="/live-sound">Sistemas ao vivo</a>
+        <a href="/live-sound/dante">Dante e áudio em rede</a>
+        <a href="/live-sound/wireless">Wireless e RF</a>
+        <a href="/live-sound/monitoracao-pessoal">Monitoração pessoal</a>
+      </div>
+      <div class="footer-column">
+        <strong>Editorial</strong>
+        <a href="/conteudos">Conteúdos</a>
+        <a href="/projetos">Projetos</a>
+        <a href="/sobre-rodrigo">Sobre Rodrigo</a>
+        <a href="/contato">Contato</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>Projetos Pro Audio • Consultoria Técnica • Estúdios • Som ao Vivo • Áudio Imersivo</div>
-      <div>© {year} Projetos Pro Audio. Todos os direitos reservados.</div>
+      <div>
+        Marca editorial independente administrada por Rodrigo Chiacchio. Determinadas soluções são fornecidas por meio da Music Company, da Quanta Pro e de parceiros especializados.
+      </div>
+      <div class="footer-legal">
+        <span>© {year} Projetos Pro Audio.</span>
+        <a href="/politica-de-privacidade">Privacidade</a>
+        <a href="/termos-de-uso">Termos</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<a class="btn btn-primary sticky-cta" href="/#contato">Fale conosco</a>
+<a class="btn btn-primary sticky-cta" href="/diagnostico-de-setup">Analisar setup</a>

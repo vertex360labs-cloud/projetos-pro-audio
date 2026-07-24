@@ -1,0 +1,22 @@
+---
+import LandingLayout from '@/layouts/LandingLayout.astro';
+import { studioPages } from '@/data/architecture';
+export function getStaticPaths() {
+  return studioPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+---
+<LandingLayout
+  title={page.title}
+  eyebrow="Studio"
+  canonical={`/studio/${page.slug}`}
+  description={page.description}
+  intro={page.intro}
+  image="/images/real/ssl2_site_ok-4ZKPyZ4V2xMcBfE4.jpg"
+  bullets={page.bullets}
+  cards={[
+    { title: 'Diagnóstico do setup', description: 'Organize contexto, gargalos e objetivo antes de escolher.', href: '/diagnostico-de-setup' },
+    { title: 'Conteúdo técnico', description: 'Veja guias e comparativos relacionados à decisão.', href: '/conteudos' },
+    { title: 'Projetos e setups', description: 'Conheça aplicações e estruturas reais.', href: '/projetos' },
+  ]}
+/>

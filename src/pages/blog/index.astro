@@ -28,7 +28,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="container">
       <div class="blog-grid">
         {posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="card blog-card">
+          <a href={`/blog/${post.id}`} class="card blog-card">
             {post.data.heroImage && (
               <div class="blog-card-image">
                 <img

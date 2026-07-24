@@ -1,0 +1,14 @@
+---
+import LandingLayout from '@/layouts/LandingLayout.astro';
+import { livePages } from '@/data/architecture';
+---
+<LandingLayout
+  title="Live Sound"
+  eyebrow="Conteúdo e encaminhamento técnico"
+  canonical="/live-sound"
+  description="Consoles, áudio em rede, wireless, monitoração e projetos para igrejas, eventos e locadoras."
+  intro="Rodrigo atua na gestão de Marketing Digital da Quanta Pro. O Projetos Pro Audio ajuda a qualificar o cenário e encaminha oportunidades de Live Sound para a equipe ou especialista adequado."
+  image="/images/expertise-linearray.jpg"
+  bullets={['Violet Audio e PreSonus StudioLive', 'Igrejas, eventos e locadoras', 'Atendimento encaminhado com contexto']}
+  cards={livePages.map((page) => ({ ...page, href: `/live-sound/${page.slug}` }))}
+/>

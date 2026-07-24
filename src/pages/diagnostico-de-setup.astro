@@ -1,0 +1,10 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import CTA from '@/components/CTA.astro';
+---
+<BaseLayout title="Diagnóstico de Setup" description="Organize o cenário atual, identifique gargalos e dê o primeiro passo para o próximo upgrade ou projeto." canonical="/diagnostico-de-setup">
+  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Diagnóstico de Setup'}]}/><span class="eyebrow">Ponto de partida</span><h1 class="title-lg">Antes do produto, o cenário.</h1><p class="lead">Envie as informações principais do seu sistema. O objetivo é entender a necessidade e direcionar o contato — não gerar uma lista automática.</p></div></header>
+  <section class="section-sm"><div class="container stat-grid"><div class="stat"><strong>1. Contexto</strong><span>Operação, equipamentos e ambiente atual.</span></div><div class="stat"><strong>2. Gargalo</strong><span>O que limita resultado, workflow ou confiabilidade.</span></div><div class="stat"><strong>3. Direção</strong><span>Próximo contato e especialista mais adequado.</span></div></div></section>
+  <CTA eyebrow="Formulário de diagnóstico" title="Conte como o seu sistema funciona hoje." description="Quanto melhor o contexto, mais útil pode ser a primeira conversa." />
+</BaseLayout>

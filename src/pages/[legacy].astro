@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import AuthorBox from '@/components/AuthorBox.astro';
+import RelatedArticles from '@/components/RelatedArticles.astro';
+import CTA from '@/components/CTA.astro';
+import { legacyReviews } from '@/data/legacy-reviews';
+import { articleSchema, breadcrumbSchema } from '@/utils/schema';
+
+export function getStaticPaths() {
+  return legacyReviews.map((review) => ({ params: { legacy: review.slug }, props: { review } }));
+}
+const { review } = Astro.props;
+const canonical = `/${review.slug}`;
+const crumbs = [{label:'Início',href:'/'},{label:'Reviews',href:'/reviews'},{label:review.title}];
+---
+<BaseLayout title={review.title} description={review.description} canonical={canonical} ogType="article" ogImage={review.image} schema={[articleSchema({title:review.title,description:review.description,slug:canonical,publishedTime:'2026-02-04T12:00:00.000Z',modifiedTime:'2026-07-24T12:00:00.000Z',image:review.image,author:'Rodrigo Chiacchio'}),breadcrumbSchema(crumbs)]}>
+  <article>
+    <header class="page-hero"><div class="container"><Breadcrumb items={crumbs}/><span class="eyebrow">Review revisado</span><h1 class="title-lg">{review.title}</h1><p class="lead">{review.description}</p><div class="article-meta"><span>Rodrigo Chiacchio</span><span>•</span><time datetime="2026-07-24">Revisado em 24 de julho de 2026</time></div><div class="article-hero-image"><img src={review.image} alt="" width="1200" height="514"/></div></div></header>
+    <div class="content-body"><div class="container content-prose"><p class="notice">Este artigo preserva a URL publicada no site anterior e teve a linguagem promocional revisada. Especificações podem mudar; confirme sempre a documentação atual do fabricante.</p><h2>Para quem faz sentido</h2><p>{review.audience}</p><h2>Quando olhar outras opções</h2><p>{review.notFor}</p>{review.points.map(point=><><h2>{point.title}</h2><p>{point.text}</p></>)}<h2>Pontos técnicos para confirmar</h2><ul>{review.specs.map(spec=><li>{spec}</li>)}</ul><h2>Como tomar a decisão</h2><p>Compare a função deste equipamento com o gargalo atual, a infraestrutura necessária e as alternativas dentro da mesma faixa de investimento. Uma demonstração no contexto correto é mais útil que uma conclusão universal.</p><AuthorBox /></div></div>
+  </article>
+  <RelatedArticles articles={legacyReviews.filter(item=>item.slug!==review.slug).slice(0,3).map(item=>({title:item.title,href:`/${item.slug}`,description:item.description}))}/>
+  <CTA title="Quer avaliar este equipamento no seu setup?" />
+</BaseLayout>
