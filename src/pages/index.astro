@@ -25,14 +25,14 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
       <div class="visual-hero-copy">
         <span class="kicker">Decisões técnicas mais inteligentes</span>
         <h1>Qual é o próximo upgrade certo para o seu estúdio?</h1>
-        <p>Monitoração, conversão, outboard e integração avaliados como um único sistema — antes da compra.</p>
+        <p>Decisões técnicas mais inteligentes em monitoração, conversão e pré amplificação.</p>
         <div class="btn-row">
           <a href="/diagnostico-de-setup" class="btn btn-primary">Analisar meu setup</a>
           <a href="/conteudos" class="editorial-link">Ver conteúdos <span>→</span></a>
         </div>
       </div>
       <div class="visual-hero-media">
-        <img src="/images/real/rodrigo-podcast-blm5RXanrJM9tVIo.jpg" alt="Rodrigo Chiacchio em ambiente profissional de áudio" width="612" height="524" />
+        <img src="/images/rodrigo-sentado-estudio.png" alt="Rodrigo Chiacchio em estúdio profissional de áudio" width="1646" height="956" />
         <div class="hero-caption"><strong>Rodrigo Chiacchio</strong><span>Quase 30 anos em áudio e tecnologia</span></div>
       </div>
     </section>
@@ -67,7 +67,6 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
           <article class="service-card">
             <img src="/images/real/ssl900_site-OwEpoEGYUBs0ktyw.jpg" alt="Console SSL em estúdio profissional" width="1185" height="667" />
             <div class="service-copy">
-              <span class="kicker">Atuação principal</span>
               <h3>Studio</h3>
               <p>Soluções completas para produção, mixagem e masterização.</p>
               <ul><li>Upgrade</li><li>Monitoração</li><li>Conversão</li><li>Outboard</li></ul>
@@ -75,12 +74,11 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
             </div>
           </article>
           <article class="service-card">
-            <img src="/images/live-sound-foh-v2.png" alt="Console profissional na posição de front of house em teatro" width="1536" height="1024" />
+            <img src="/images/studiolive-se32r-igrejas.png" alt="Console PreSonus StudioLive em uma igreja" width="1254" height="1254" />
             <div class="service-copy">
-              <span class="kicker">Conteúdo e encaminhamento</span>
               <h3>Live Sound</h3>
               <p>Sistemas confiáveis para sonorização e produção de eventos.</p>
-              <ul><li>StudioLive</li><li>Áudio em rede</li><li>Dante</li><li>Monitoração pessoal</li></ul>
+              <ul><li>StudioLive</li><li>Áudio em rede</li><li>Violet Audio</li><li>Monitoração pessoal</li></ul>
               <a href="/live-sound">Saiba mais →</a>
             </div>
           </article>
@@ -99,7 +97,7 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
           <small>Seus dados são usados apenas para a análise e o contato solicitado.</small>
         </div>
         <div class="diagnostic-image">
-          <img src="/images/real/cabeamento-redco-mogami-para-estudios-EqZymYEyaSWho9o9.png" alt="Detalhe de integração e cabeamento em sistema profissional" width="486" height="357" />
+          <img src="/images/rodrigo-equipamentos-ssl.png" alt="Rodrigo Chiacchio ajustando equipamentos SSL em estúdio profissional" width="1762" height="893" />
         </div>
       </div>
     </section>
@@ -110,7 +108,7 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
         <div class="content-cards">
           {posts.map((post) => (
             <a href={`/blog/${post.id}`} class="content-card">
-              {post.data.heroImage && <img src={post.data.heroImage} alt="" width="640" height="360" />}
+              {post.data.heroImage && <img src={`/images/content-cards/${post.id}.webp`} alt="" width="1500" height="400" />}
               <div><span class="kicker">{post.data.tags[0] ?? 'Conteúdo'}</span><h3>{post.data.title}</h3><p>{post.data.description}</p><strong>Ler artigo →</strong></div>
             </a>
           ))}
@@ -139,7 +137,7 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
 
     <section class="home-block about-block">
       <div class="home-container about-grid">
-        <img src="/images/real/rodrigo-podcast-blm5RXanrJM9tVIo.jpg" alt="Rodrigo Chiacchio em estúdio de podcast" width="612" height="524" />
+        <img src="/images/rodrigo-bracos-cruzados.png" alt="Rodrigo Chiacchio de braços cruzados em estúdio profissional" width="1024" height="1536" />
         <div class="about-copy">
           <span class="kicker">Experiência para orientar</span>
           <h2>Decisões importantes pedem contexto de mercado e visão técnica.</h2>
@@ -216,7 +214,7 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
   .diagnostic-image img { width: 100%; height: 100%; object-fit: cover; }
   .content-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-cards); }
   .content-card { overflow: hidden; background: #fff; border: 1px solid #d4d4d0; border-radius: 5px; }
-  .content-card img { width: 100%; aspect-ratio: 16/7.2; object-fit: cover; filter: saturate(.8); }
+  .content-card img { display: block; width: 100%; height: clamp(140px, 10vw, 160px); aspect-ratio: 3.75 / 1; object-fit: cover; object-position: center; filter: saturate(.8); }
   .content-card > div { padding: 19px 20px; }
   .content-card h3 { margin-top: 6px; font-size: 1.15rem; }
   .content-card p { margin-top: 8px; color: #656869; font-size: .81rem; line-height: 1.45; }
@@ -269,6 +267,7 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
     .brand-track { min-height: 70px; justify-content: flex-start; overflow-x: auto; }
     .home-block { padding: var(--space-section) 0; }
     .decision-grid, .content-cards { grid-template-columns: 1fr; }
+    .content-card img { height: auto; aspect-ratio: 2.4 / 1; }
     .decision-card { min-height: 210px; }
     .service-card { grid-template-columns: 1fr; max-height: none; }
     .service-card > img { aspect-ratio: 16/10; }
