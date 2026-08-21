@@ -15,11 +15,12 @@ interface Props {
   cards?: Card[];
   bullets?: string[];
   ctaTitle?: string;
+  noindex?: boolean;
 }
 
 const {
   title, description, canonical, eyebrow, intro, image,
-  cards = [], bullets = [], ctaTitle,
+  cards = [], bullets = [], ctaTitle, noindex = false,
 } = Astro.props;
 const crumbs = [
   { label: 'Início', href: '/' },
@@ -27,7 +28,7 @@ const crumbs = [
 ];
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical} schema={breadcrumbSchema(crumbs)}>
+<BaseLayout title={title} description={description} canonical={canonical} schema={breadcrumbSchema(crumbs)} noindex={noindex}>
   <header class="page-hero">
     <div class="container">
       <Breadcrumb items={crumbs} />

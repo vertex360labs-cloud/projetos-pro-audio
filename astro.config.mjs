@@ -6,7 +6,17 @@ export default defineConfig({
   site: 'https://projetosproaudio.com.br',
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => ![
+        '/conteudos/vale-o-upgrade/',
+        '/conteudos/dream-studio-sessions/',
+        '/conteudos/radar-pro-audio/',
+        '/live-sound/wireless/',
+        '/live-sound/projetos-de-sonorizacao/',
+        '/projetos/',
+        '/comparativos/pmc-vs-genelec/',
+      ].some((path) => page.endsWith(path)),
+    }),
   ],
   markdown: {
     shikiConfig: {

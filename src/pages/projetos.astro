@@ -8,7 +8,7 @@ const examples = [
   ['Cabeamento e infraestrutura', '/images/real/cabeamento-redco-mogami-para-estudios-EqZymYEyaSWho9o9.png', 'Conexão e organização que sustentam expansão, manutenção e confiabilidade.'],
 ];
 ---
-<BaseLayout title="Projetos e Setups" description="Projetos, integrações e setups profissionais de áudio acompanhados pelo Projetos Pro Audio." canonical="/projetos">
+<BaseLayout noindex title="Projetos e Setups" description="Projetos, integrações e setups profissionais de áudio acompanhados pelo Projetos Pro Audio." canonical="/projetos">
   <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Projetos'}]}/><span class="eyebrow">Aplicação real</span><h1 class="title-lg">Projetos e setups</h1><p class="lead">Uma área em construção para documentar problema, decisão, integração, resultado e próximos passos — sem números ou claims não verificados.</p></div></header>
   <section class="section"><div class="container"><div class="card-grid">{examples.map(([title,image,description])=><article class="card"><div class="blog-card-image"><img src={image} alt="" width="720" height="405" loading="lazy"/></div><div class="card-body"><h3>{title}</h3><p>{description}</p></div></article>)}</div><p class="notice" style="margin-top:28px;">Casos detalhados serão publicados somente após validação das informações e autorização de uso de nomes, imagens e resultados.</p></div></section>
   <CTA title="Tem um projeto ou setup para analisar?" />

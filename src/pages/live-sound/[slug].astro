@@ -5,6 +5,7 @@ export function getStaticPaths() {
   return livePages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
 }
 const { page } = Astro.props;
+const archived = ['wireless', 'projetos-de-sonorizacao'].includes(page.slug);
 ---
 <LandingLayout
   title={page.title}
@@ -14,6 +15,7 @@ const { page } = Astro.props;
   intro={page.intro}
   image="/images/expertise-theatre.jpg"
   bullets={page.bullets}
+  noindex={archived}
   cards={[
     { title: 'Qualifique o projeto', description: 'Envie contexto para o encaminhamento correto.', href: '/diagnostico-de-setup' },
     { title: 'Outras soluções Live', description: 'Veja toda a arquitetura de Live Sound.', href: '/live-sound' },
