@@ -28,6 +28,8 @@ O formulário envia para `/api/lead`, uma função Vercel. Configure as variáve
 - `LEAD_WEBHOOK_URL`; ou
 - `RESEND_API_KEY` e `LEAD_FROM`.
 
+O projeto Vercel usa a integração oficial do Resend. Enquanto o domínio de envio não estiver verificado, mantenha `LEAD_FROM="Projetos Pro Audio <onboarding@resend.dev>"`. Depois da verificação DNS, substitua pelo remetente do domínio oficial.
+
 Os destinatários são definidos por `STUDIO_LEAD_TO`, `LIVE_LEAD_TO` e `COMPLEX_LEAD_TO`.
 
 Sem configuração de entrega, a API responde com erro explícito e a interface não mostra sucesso falso.

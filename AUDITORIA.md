@@ -1,5 +1,7 @@
 # Auditoria do projeto Projetos Pro Audio
 
+> Documento histórico de 24 de julho de 2026. A base foi posteriormente migrada para Astro 7, recebeu API de leads, testes, páginas legais, preservação das URLs públicas e configuração da Vercel. Consulte o README e execute os comandos de verificação para avaliar o estado atual.
+
 Data da auditoria: 24 de julho de 2026
 
 ## Resumo executivo

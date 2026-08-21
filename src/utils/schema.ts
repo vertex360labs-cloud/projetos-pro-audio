@@ -2,6 +2,8 @@ import { SITE } from '@/config/site';
 import { getCanonicalUrl } from '@/utils/seo';
 
 export function organizationSchema() {
+  const socialProfiles = [SITE.social.instagram, SITE.social.linkedin].filter(Boolean);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -9,7 +11,7 @@ export function organizationSchema() {
     url: SITE.url,
     logo: getCanonicalUrl('/images/logo-dark.jpg'),
     description: SITE.description,
-    sameAs: [SITE.social.instagram, SITE.social.linkedin],
+    ...(socialProfiles.length ? { sameAs: socialProfiles } : {}),
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
