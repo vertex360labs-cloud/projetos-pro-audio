@@ -3,7 +3,7 @@ import type { FAQItem } from '@/components/FAQ.astro';
 export const homeFAQ: FAQItem[] = [
   {
     question: 'A Projetos Pro Audio vende equipamento ou faz projeto?',
-    answer: 'O foco principal é direção técnica, curadoria, projeto e especificação. Dependendo do modelo comercial, isso pode incluir apoio à compra, implantação e expansão.',
+    answer: 'O foco principal é direção técnica, curadoria, projeto e especificação. A venda é feita pelas empresas que eu represento oficialmente: Music Company, Quanta Pro e Pro Audio Solutions.',
   },
   {
     question: 'Vocês atendem apenas estúdios?',
