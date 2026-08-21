@@ -17,5 +17,6 @@ export const SITE = {
   },
   contact: {
     email: 'rodrigo@projetosproaudio.com.br',
+    whatsapp: '5519997261418',
   },
 } as const;
