@@ -8,9 +8,9 @@ interface Props {
 }
 
 const {
-  eyebrow = 'Diagnóstico de setup',
-  title = 'Qual é a próxima decisão do seu sistema?',
-  description = 'Conte o que você usa hoje, onde está o gargalo e o que pretende alcançar. A resposta será direcionada para a pessoa mais adequada.',
+  eyebrow = 'Converse com um especialista',
+  title = 'Qual é o próximo passo para o seu sistema?',
+  description = 'Conte como você trabalha hoje, o que está limitando a operação e o resultado que procura. Essas informações ajudam a tornar a primeira conversa mais objetiva.',
   showForm = true,
   compact = false,
 } = Astro.props;
@@ -24,9 +24,9 @@ const {
         <h2>{title}</h2>
         <p>{description}</p>
         <ul class="check-list">
-          <li>Contexto antes de recomendação</li>
-          <li>Studio e Live Sound com rotas diferentes</li>
-          <li>Sem compromisso de compra</li>
+          <li>Análise do sistema e da aplicação</li>
+          <li>Orientação de acordo com sua necessidade</li>
+          <li>Conversa inicial sem compromisso de compra</li>
         </ul>
       </div>
 
@@ -114,7 +114,7 @@ const {
           </label>
 
           <input type="hidden" name="origem" value={Astro.url.pathname} />
-          <button type="submit" class="btn btn-primary">Enviar diagnóstico</button>
+          <button type="submit" class="btn btn-primary">Enviar informações</button>
           <p class="form-note">Seus dados não serão vendidos. O contato poderá ser encaminhado a uma equipe técnica parceira quando isso for necessário para o atendimento.</p>
           <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
@@ -150,7 +150,7 @@ const {
       const result = await response.json();
       if (!response.ok) throw new Error(result.message || 'Não foi possível enviar.');
 
-      formStatus!.textContent = 'Recebemos seu diagnóstico. Você receberá um retorno pelo contato informado.';
+      formStatus!.textContent = 'Recebemos suas informações. Você receberá um retorno pelo contato informado.';
       formStatus!.classList.add('success');
       window.ppaTrack?.('lead_submit', { interesse: payload.interesse, origem: payload.origem });
       leadForm.reset();
@@ -161,7 +161,7 @@ const {
       formStatus!.classList.add('error');
     } finally {
       button.disabled = false;
-      button.textContent = 'Enviar diagnóstico';
+      button.textContent = 'Enviar informações';
     }
   });
 </script>

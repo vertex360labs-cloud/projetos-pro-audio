@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import { legacyReviews } from '@/data/legacy-reviews';
 ---
-<BaseLayout title="Reviews" description="Reviews técnicos de equipamentos profissionais de áudio, com aplicação, limites e contexto de compra." canonical="/reviews">
-  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Reviews'}]}/><span class="eyebrow">Reviews</span><h1 class="title-lg">Produto dentro do sistema.</h1><p class="lead">Análises revisadas para explicar aplicação, público, limitações, integração e alternativas — sem promessas absolutas.</p></div></header>
-  <section class="section"><div class="container"><div class="blog-grid">{legacyReviews.map(review=><a class="card blog-card" href={`/${review.slug}`}><div class="blog-card-image"><img src={review.image} alt="" width="640" height="360" loading="lazy"/></div><div class="blog-card-body"><span class="tag">Review revisado</span><h3>{review.title}</h3><p>{review.description}</p></div></a>)}</div></div></section>
+<BaseLayout title="Análises de Equipamentos" description="Análises técnicas de equipamentos profissionais de áudio, com aplicações, integração e critérios para uma compra bem planejada." canonical="/reviews">
+  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Análises técnicas'}]}/><span class="eyebrow">Análises técnicas</span><h1 class="title-lg">Entenda o papel de cada equipamento no seu projeto</h1><p class="lead">Veja aplicações, integrações, pontos de atenção e alternativas para escolher soluções coerentes com sua operação.</p></div></header>
+  <section class="section"><div class="container"><div class="blog-grid">{legacyReviews.map(review=><a class="card blog-card" href={`/${review.slug}`}><div class="blog-card-image"><img src={review.image} alt="" width="640" height="360" loading="lazy"/></div><div class="blog-card-body"><span class="tag">Análise técnica</span><h3>{review.title}</h3><p>{review.description}</p></div></a>)}</div></div></section>
 </BaseLayout>

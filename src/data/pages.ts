@@ -11,7 +11,7 @@ export const services: PageContent[] = [
   {
     slug: '/servicos/consultoria-estudio-profissional',
     title: 'Consultoria para Estúdio Profissional',
-    description: 'Direção técnica para estúdios de gravação, mixagem e produção com monitoração, acústica, workflow e expansão futura.',
+    description: 'Consultoria técnica para estúdios de gravação, mixagem e produção, com atenção à monitoração, acústica, rotina de trabalho e expansão futura.',
     faq: [
       {
         question: 'A consultoria inclui especificação de equipamentos?',
@@ -26,7 +26,7 @@ export const services: PageContent[] = [
       {
         heading: 'Estúdio como sistema integrado',
         paragraphs: [
-          'Monitoração, conversão, microfones, acústica, rede e workflow precisam conversar. Um estúdio premium nasce da coerência entre esses elementos — não de marcas isoladas.',
+          'Monitoração, conversão, microfones, acústica, rede e workflow precisam funcionar em conjunto. A qualidade do estúdio depende da coerência entre esses elementos, não apenas das marcas escolhidas.',
           'A consultoria mapeia objetivo artístico, rotina de uso, limitações da sala e investimento disponível antes de qualquer compra.',
         ],
       },
@@ -41,19 +41,19 @@ export const services: PageContent[] = [
   {
     slug: '/servicos/projetos-dolby-atmos',
     title: 'Projetos Dolby Atmos',
-    description: 'Salas imersivas 7.1.4 e superiores com monitoração, calibração, integração de workflow e especificação para produção premium.',
+    description: 'Planejamento de salas imersivas 7.1.4 e superiores, com monitoração, calibração e integração ao fluxo de produção.',
     faq: [
       {
         question: 'Preciso reformar toda a sala para Atmos?',
-        answer: 'Nem sempre. O diagnóstico define se adaptação parcial, tratamento adicional ou nova disposição é o caminho mais inteligente.',
+        answer: 'Nem sempre. A análise indica se uma adaptação parcial, tratamento adicional ou nova disposição atende às necessidades da sala.',
       },
     ],
     sections: [
       {
-        heading: 'Immersive audio com critério',
+        heading: 'Áudio imersivo com planejamento',
         paragraphs: [
-          'Dolby Atmos exige mais do que adicionar caixas. Posicionamento, subwoofers, bass management, calibração e monitoração de referência definem se a sala performa de verdade.',
-          'Projetamos salas para produção, mixagem e masterização imersiva com foco em tradução, operação e padrão de referência.',
+          'Dolby Atmos exige mais do que adicionar caixas. Posicionamento, subwoofers, gerenciamento de graves, calibração e monitoração de referência determinam a precisão da sala.',
+          'O projeto considera produção, mixagem e masterização imersiva, com atenção à tradução entre sistemas e à rotina de operação.',
         ],
       },
     ],
@@ -61,12 +61,12 @@ export const services: PageContent[] = [
   {
     slug: '/servicos/consultoria-live-sound',
     title: 'Consultoria Live Sound',
-    description: 'Sistemas PA, monitor de palco, padronização de rig, cobertura e operação para touring, venues e produções exigentes.',
+    description: 'Sistemas de PA, monitoração de palco, padronização, cobertura e operação para turnês, casas de show e eventos.',
     sections: [
       {
-        heading: 'Performance no mundo real',
+        heading: 'Desempenho consistente em cada montagem',
         paragraphs: [
-          'Live sound premium combina cobertura, headroom, redundância, operação e retorno de investimento. Especificamos sistemas que funcionam em turnê, festival e venue fixo.',
+          'Um sistema de sonorização precisa equilibrar cobertura, margem dinâmica, redundância, facilidade de operação e custo. A especificação considera as condições de turnês, festivais e instalações fixas.',
         ],
       },
     ],
@@ -74,12 +74,12 @@ export const services: PageContent[] = [
   {
     slug: '/servicos/sistemas-rf-wireless',
     title: 'Sistemas RF e Wireless',
-    description: 'Planejamento de frequências, densidade de canais, IEM, antenas e operação segura para igrejas, eventos e produções críticas.',
+    description: 'Planejamento de frequências, densidade de canais, sistemas wireless, antenas e operação para igrejas e eventos.',
     sections: [
       {
         heading: 'RF previsível em ambientes densos',
         paragraphs: [
-          'Wireless profissional exige coordenação, scan, antenas corretas e redundância. Projetamos sistemas para operação confiável mesmo com interferência e múltiplos canais.',
+          'Sistemas wireless profissionais exigem coordenação, varredura de espectro, antenas adequadas e procedimentos de contingência. O projeto busca reduzir interferências e manter a operação organizada com múltiplos canais.',
         ],
       },
     ],
@@ -92,7 +92,7 @@ export const services: PageContent[] = [
       {
         heading: 'Som claro para a congregação',
         paragraphs: [
-          'Igrejas precisam de inteligibilidade, feedback controlado e operação acessível para voluntários. Projetamos sistemas que performam no culto semanal e escalam para eventos especiais.',
+          'Igrejas precisam de inteligibilidade, controle de microfonia e uma operação acessível para diferentes equipes. O sistema deve atender à rotina semanal e também comportar eventos especiais.',
         ],
       },
     ],
@@ -120,9 +120,9 @@ export const comparisons: PageContent[] = [
     description: 'Análise comparativa de microfones e sistemas wireless Shure e Sennheiser para live, estúdio e igrejas.',
     sections: [
       {
-        heading: 'Marcas líderes, contextos diferentes',
+        heading: 'Duas marcas, diferentes possibilidades de aplicação',
         paragraphs: [
-          'Shure e Sennheiser dominam captação e RF profissional. A decisão envolve densidade de canais, ecossistema, operação e integração com o restante do sistema.',
+          'Shure e Sennheiser oferecem soluções consolidadas de captação e RF profissional. A decisão envolve densidade de canais, ecossistema, operação e integração com o restante do sistema.',
         ],
       },
     ],
@@ -146,7 +146,7 @@ export const guides: PageContent[] = [
   {
     slug: '/guias/como-montar-estudio-dolby-atmos',
     title: 'Como Montar um Estúdio Dolby Atmos',
-    description: 'Guia completo para planejar sala, monitoração, subwoofers, calibração e workflow em estúdios imersivos.',
+    description: 'Guia para planejar sala, monitoração, subwoofers, calibração e workflow em estúdios imersivos.',
     sections: [
       {
         heading: 'Planejamento antes da compra',
@@ -164,7 +164,7 @@ export const guides: PageContent[] = [
       {
         heading: 'Wireless confiável no culto',
         paragraphs: [
-          'Igrejas concentram múltiplos microfones sem fio, IEM e interferência de celular. Um plano de RF reduz dropouts e simplifica a operação semanal.',
+          'Igrejas concentram múltiplos sistemas wireless, IEM e interferências externas. Um plano de RF reduz dropouts e simplifica a operação semanal.',
         ],
       },
     ],
@@ -175,12 +175,12 @@ export const brands: PageContent[] = [
   {
     slug: '/marcas/pmc',
     title: 'PMC',
-    description: 'Monitoração de referência PMC para estúdios premium — ATL, BB5, twotwo e salas imersivas.',
+    description: 'Monitoração de referência PMC para estúdios — ATL, BB5, twotwo e salas imersivas.',
     sections: [
       {
         heading: 'Referência em monitoração',
         paragraphs: [
-          'PMC é referência global em monitoração para mastering, broadcast e produção imersiva. Curadoria técnica considera sala, SPL e workflow antes da especificação.',
+          'A PMC desenvolve sistemas de monitoração para masterização, broadcast e produção imersiva. A escolha deve considerar sala, nível de pressão sonora e workflow.',
         ],
       },
     ],
@@ -188,12 +188,12 @@ export const brands: PageContent[] = [
   {
     slug: '/marcas/ssl',
     title: 'Solid State Logic',
-    description: 'Consoles e interfaces SSL para estúdios, broadcast e produção com padrão analógico premium.',
+    description: 'Consoles e interfaces SSL para estúdios, broadcast e produção híbrida.',
     sections: [
       {
-        heading: 'Heritage analógico',
+        heading: 'Tradição analógica e integração digital',
         paragraphs: [
-          'SSL combina heritage analógico com integração digital moderna. Avaliamos encaixe com operação, I/O e expansão do estúdio.',
+          'A SSL combina circuitos analógicos com controle e integração digital. A escolha depende da operação, do I/O necessário e dos planos de expansão do estúdio.',
         ],
       },
     ],
@@ -201,12 +201,12 @@ export const brands: PageContent[] = [
   {
     slug: '/marcas/sennheiser',
     title: 'Sennheiser',
-    description: 'Microfones e sistemas wireless Sennheiser para live, broadcast, estúdio e RF profissional.',
+    description: 'Microfones e sistemas wireless Sennheiser para sonorização, broadcast, estúdio e RF profissional.',
     sections: [
       {
-        heading: 'Captação e RF premium',
+        heading: 'Captação e sistemas de RF',
         paragraphs: [
-          'Sennheiser lidera captação e wireless em produções exigentes. Especificamos com base em densidade de canais, operação e integração.',
+          'A Sennheiser oferece microfones e sistemas wireless para diferentes portes de produção. A especificação considera densidade de canais, rotina de operação e integração.',
         ],
       },
     ],
@@ -214,12 +214,12 @@ export const brands: PageContent[] = [
   {
     slug: '/marcas/shure',
     title: 'Shure',
-    description: 'Microfones, wireless e IEM Shure para igrejas, live sound, broadcast e estúdios.',
+    description: 'Microfones, sistemas wireless e IEM Shure para igrejas, sonorização, broadcast e estúdios.',
     sections: [
       {
         heading: 'Confiabilidade em campo',
         paragraphs: [
-          'Shure é sinônimo de confiabilidade em live e RF. A curadoria considera ecossistema, redundância e operação real do projeto.',
+          'A Shure oferece soluções amplamente utilizadas em sonorização e RF. A escolha considera ecossistema, redundância e rotina de operação.',
         ],
       },
     ],

@@ -5,11 +5,11 @@ const visiblePages = livePages.filter((page) => !['wireless', 'projetos-de-sonor
 ---
 <LandingLayout
   title="Live Sound"
-  eyebrow="Conteúdo e encaminhamento técnico"
+  eyebrow="Sistemas de sonorização"
   canonical="/live-sound"
   description="Consoles, áudio em rede e monitoração para igrejas, eventos e locadoras."
-  intro="Rodrigo atua na gestão de Marketing Digital da Quanta Pro. O Projetos Pro Audio ajuda a qualificar o cenário e encaminha oportunidades de Live Sound para a equipe ou especialista adequado."
+  intro="A escolha de consoles, sistemas de monitoração e infraestrutura de rede precisa considerar o espaço, a equipe e a rotina de operação. Rodrigo faz o primeiro atendimento e, quando necessário, envolve os especialistas responsáveis pelo projeto e pelo fornecimento."
   image="/images/expertise-linearray.jpg"
-  bullets={['Violet Audio e PreSonus StudioLive', 'Igrejas, eventos e locadoras', 'Atendimento encaminhado com contexto']}
+  bullets={['Violet Audio e PreSonus StudioLive', 'Igrejas, eventos e locadoras', 'Análise técnica conforme cada aplicação']}
   cards={visiblePages.map((page) => ({ ...page, href: `/live-sound/${page.slug}` }))}
 />

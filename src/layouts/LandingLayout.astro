@@ -42,7 +42,7 @@ const crumbs = [
     <section class="section">
       <div class="container split">
         <div class="split-copy">
-          <h2>Decisão técnica com contexto</h2>
+          <h2>O que considerar antes de escolher</h2>
           <p>{intro}</p>
           {bullets.length > 0 && <ul class="check-list">{bullets.map((bullet) => <li>{bullet}</li>)}</ul>}
         </div>
@@ -55,8 +55,8 @@ const crumbs = [
     <section class="section section-alt">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">Áreas relacionadas</span>
-          <h2>Encontre o ponto que mais se aproxima do seu cenário.</h2>
+          <span class="eyebrow">Veja também</span>
+          <h2>Encontre a solução adequada para sua necessidade</h2>
         </div>
         <div class="card-grid">
           {cards.map((card, index) => (
@@ -73,5 +73,5 @@ const crumbs = [
   )}
 
   <slot />
-  <CTA title={ctaTitle ?? `Vamos entender seu cenário de ${title}`} />
+  <CTA title={ctaTitle ?? `Quer conversar sobre ${title}?`} />
 </BaseLayout>
