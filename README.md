@@ -2,6 +2,15 @@
 
 Plataforma editorial e de aquisição de leads de Rodrigo Chiacchio para Studio e Live Sound.
 
+## Diretriz editorial do blog
+
+Por enquanto, o blog utiliza somente duas seções. As demais seções editoriais estão desabilitadas e não devem receber novas publicações nem ser reativadas sem uma orientação explícita.
+
+1. **Reviews** (`/reviews`): seção destinada a todos os reviews de produtos.
+2. **Guia de Compras**: seção destinada exclusivamente a indicações de produtos, acompanhadas do link de onde comprar.
+
+O formato definitivo do **Guia de Compras** ainda será definido a partir de um modelo de referência. Até essa definição, não criar nem presumir uma nova estrutura para essa seção.
+
 ## Desenvolvimento
 
 ```bash
