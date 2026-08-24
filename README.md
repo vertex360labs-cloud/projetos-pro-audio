@@ -7,9 +7,9 @@ Plataforma editorial e de aquisição de leads de Rodrigo Chiacchio para Studio 
 Por enquanto, o blog utiliza somente duas seções. As demais seções editoriais estão desabilitadas e não devem receber novas publicações nem ser reativadas sem uma orientação explícita.
 
 1. **Reviews** (`/reviews`): seção destinada a todos os reviews de produtos.
-2. **Guia de Compras**: seção destinada exclusivamente a indicações de produtos, acompanhadas do link de onde comprar.
+2. **Guia de Equipamentos**: seção planejada para orientar a escolha de produtos por aplicação e categoria, conectando indicações, conteúdos relacionados e o próximo passo comercial adequado.
 
-O formato definitivo do **Guia de Compras** ainda será definido a partir de um modelo de referência. Até essa definição, não criar nem presumir uma nova estrutura para essa seção.
+O formato definitivo do **Guia de Equipamentos** deve seguir o roadmap em `docs/ROADMAP-GUIA-DE-EQUIPAMENTOS.md` e ser aprovado antes da implementação.
 
 ## Desenvolvimento
 

@@ -10,5 +10,8 @@ import { studioPages } from '@/data/architecture';
   intro="Não existe uma sequência universal de upgrades. O ponto de partida é o trabalho que você realiza, o sistema atual, a sala e o que realmente limita o próximo resultado."
   image="/images/real/ssl900_site-OwEpoEGYUBs0ktyw.jpg"
   bullets={['Equipamentos pontuais ou projetos completos', 'Escolhas compatíveis com sua sala e rotina', 'Integração técnica e planejamento de expansão']}
-  cards={studioPages.map((page) => ({ ...page, href: `/studio/${page.slug}` }))}
+  cards={[
+    { title: 'Guia de Equipamentos', description: 'Interfaces, monitores, outboard, controladores e microfones organizados por aplicação.', href: '/guia-de-equipamentos', label: 'GUIA' },
+    ...studioPages.map((page) => ({ ...page, href: `/studio/${page.slug}` })),
+  ]}
 />

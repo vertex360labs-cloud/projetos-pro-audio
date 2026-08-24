@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb.astro';
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const pillars = [
   ['Análises técnicas', 'Entenda aplicações, integrações e pontos de atenção antes de escolher um equipamento.', '/reviews'],
-  ['Guias de compra', 'Critérios para escolher e integrar equipamentos de acordo com o trabalho.', '/guias/como-montar-estudio-dolby-atmos'],
+  ['Guia de Equipamentos', 'Produtos organizados por aplicação, critérios de escolha e próximo passo.', '/guia-de-equipamentos'],
 ];
 ---
 <BaseLayout title="Conteúdos" description="Guias e análises para escolher, integrar e utilizar equipamentos profissionais de áudio." canonical="/conteudos">

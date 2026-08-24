@@ -15,11 +15,15 @@ export function validateLead(input) {
     operacao: text(input.operacao, 160),
     investimento: text(input.investimento, 80),
     prazo: text(input.prazo, 80),
+    produto: text(input.produto, 200),
+    canalPreferido: text(input.canalPreferido, 40),
     cidade: text(input.cidade, 120),
     equipamentos: text(input.equipamentos),
     cenario: text(input.cenario, 4000),
     consentimento: text(input.consentimento, 10),
     origem: text(input.origem, 240),
+    categoriaOrigem: text(input.categoriaOrigem, 120),
+    referencia: text(input.referencia, 500),
     website: text(input.website, 200),
   };
 
@@ -58,10 +62,14 @@ export function buildLeadEmail(lead, route) {
     ['Operação', lead.operacao],
     ['Investimento', lead.investimento],
     ['Prazo', lead.prazo],
+    ['Produto/linha', lead.produto],
+    ['Canal preferido', lead.canalPreferido],
     ['Cidade/Estado', lead.cidade],
     ['Equipamentos', lead.equipamentos],
     ['Cenário', lead.cenario],
     ['Origem', lead.origem],
+    ['Categoria de origem', lead.categoriaOrigem],
+    ['Referência', lead.referencia],
   ];
   const escape = (value) => String(value || '—').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
   return `<h1>Novo diagnóstico — ${escape(lead.interesse)}</h1>${rows.map(([label,value]) => `<p><strong>${escape(label)}:</strong><br>${escape(value)}</p>`).join('')}`;

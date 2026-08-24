@@ -11,5 +11,8 @@ const visiblePages = livePages.filter((page) => !['wireless', 'projetos-de-sonor
   intro="A escolha de consoles, sistemas de monitoração e infraestrutura de rede precisa considerar o espaço, a equipe e a rotina de operação. Rodrigo faz o primeiro atendimento e, quando necessário, envolve os especialistas responsáveis pelo projeto e pelo fornecimento."
   image="/images/expertise-linearray.jpg"
   bullets={['Violet Audio e PreSonus StudioLive', 'Igrejas, eventos e locadoras', 'Análise técnica conforme cada aplicação']}
-  cards={visiblePages.map((page) => ({ ...page, href: `/live-sound/${page.slug}` }))}
+  cards={[
+    { title: 'Guia de Equipamentos', description: 'Consoles, mixers e soluções em rede organizados por aplicação e porte de projeto.', href: '/guia-de-equipamentos', label: 'GUIA' },
+    ...visiblePages.map((page) => ({ ...page, href: `/live-sound/${page.slug}` })),
+  ]}
 />

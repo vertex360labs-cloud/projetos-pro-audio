@@ -104,6 +104,22 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
 
     <section class="home-block">
       <div class="home-container">
+        <div class="guide-home-panel">
+          <div>
+            <span class="kicker">Guia de Equipamentos</span>
+            <h2>Compare caminhos antes de escolher um produto.</h2>
+            <p>Encontre interfaces, monitores, outboard, microfones, controladores e consoles organizados por aplicação e complexidade.</p>
+          </div>
+          <div class="guide-home-actions">
+            <a class="btn btn-primary" href="/guia-de-equipamentos">Explorar o guia</a>
+            <a href="/diagnostico-de-setup">Preciso analisar meu sistema →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-block">
+      <div class="home-container">
         <div class="center-title"><span class="kicker">Guias e análises</span><h2>Informação técnica para decidir melhor</h2></div>
         <div class="content-cards">
           {posts.map((post) => (
@@ -179,6 +195,11 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
   .hero-caption { position: absolute; z-index: 1; left: 22px; bottom: 20px; display: grid; color: #fff; font-size: .86rem; }
   .hero-caption span { font-size: .78rem; opacity: .82; }
   .editorial-link { display: inline-flex; align-items: center; gap: 16px; border-bottom: 1px solid #111; padding: 0 0 4px; font-weight: 750; }
+  .guide-home-panel { display: grid; grid-template-columns: 1.4fr auto; gap: 40px; align-items: center; padding: 32px; border: 1px solid #c9d7df; border-radius: 5px; background: #eaf1f5; }
+  .guide-home-panel h2 { max-width: 20ch; margin-top: 5px; font-size: clamp(1.8rem, 2.7vw, 2.5rem); letter-spacing: -.045em; }
+  .guide-home-panel p { max-width: 65ch; margin-top: 10px; color: #596267; line-height: 1.55; }
+  .guide-home-actions { display: grid; gap: 12px; justify-items: center; min-width: 210px; }
+  .guide-home-actions a:not(.btn) { color: #245f86; font-size: .82rem; font-weight: 750; }
   .brand-strip { background: #fff; border-bottom: 1px solid #d7d7d2; }
   .brand-track { width: min(calc(100% - 48px), var(--home-width)); min-height: 68px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; overflow: hidden; }
   .brand-track span { color: #25292b; font-size: clamp(.7rem, 1.05vw, .92rem); font-weight: 900; letter-spacing: .01em; white-space: nowrap; }
@@ -253,6 +274,8 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
     .visual-hero-media { min-height: 440px; }
     .decision-grid, .content-cards { grid-template-columns: repeat(2, 1fr); }
     .service-grid { grid-template-columns: 1fr; }
+    .guide-home-panel { grid-template-columns: 1fr; }
+    .guide-home-actions { justify-items: start; }
     .service-card { max-height: none; }
     .about-grid { grid-template-columns: .75fr 1.25fr; }
     .about-stats { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
@@ -266,6 +289,9 @@ const brands = ['SSL', 'PMC', 'NEUMANN', 'ADAM AUDIO', 'ANTELOPE AUDIO', 'PRESON
     .brand-track { min-height: 70px; justify-content: flex-start; overflow-x: auto; }
     .home-block { padding: var(--space-section) 0; }
     .decision-grid, .content-cards { grid-template-columns: 1fr; }
+    .guide-home-panel { padding: 24px; }
+    .guide-home-actions { justify-items: stretch; min-width: 0; }
+    .guide-home-actions a { text-align: center; }
     .content-card img { height: auto; aspect-ratio: 2.4 / 1; }
     .decision-card { min-height: 210px; }
     .service-card { grid-template-columns: 1fr; max-height: none; }

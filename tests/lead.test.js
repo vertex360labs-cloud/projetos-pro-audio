@@ -28,3 +28,14 @@ it('escapes HTML in email output', () => {
   const parsed = validateLead({ ...valid, nome: '<script>' });
   expect(buildLeadEmail(parsed.lead, 'studio')).not.toContain('<script>');
 });
+
+it('preserves product and source context', () => {
+  const parsed = validateLead({
+    ...valid,
+    produto: 'SSL 18',
+    categoriaOrigem: 'Interfaces e conversão',
+    referencia: 'https://projetosproaudio.com.br/guia-de-equipamentos',
+  });
+  expect(parsed.lead.produto).toBe('SSL 18');
+  expect(buildLeadEmail(parsed.lead, 'studio')).toContain('Interfaces e conversão');
+});

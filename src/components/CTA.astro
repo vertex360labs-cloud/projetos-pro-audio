@@ -14,6 +14,9 @@ const {
   showForm = true,
   compact = false,
 } = Astro.props;
+
+const selectedProduct = Astro.url.searchParams.get('produto') ?? '';
+const selectedCategory = Astro.url.searchParams.get('categoria') ?? '';
 ---
 
 <section class:list={['section', 'cta-section', { 'cta-compact': compact }]} id="contato">
@@ -58,6 +61,11 @@ const {
                 <option value="igreja">Igreja</option>
                 <option value="eventos-locacao">Eventos / locação</option>
                 <option value="podcast-broadcast">Podcast / broadcast</option>
+                <option value="interfaces">Interfaces e conversão</option>
+                <option value="monitoracao">Monitoração</option>
+                <option value="outboard">Outboard e setup híbrido</option>
+                <option value="microfones">Microfones e captação</option>
+                <option value="producao">Controladores e produção</option>
                 <option value="outro">Outro</option>
               </select>
             </div>
@@ -89,6 +97,18 @@ const {
                 <option>Ainda sem prazo</option>
               </select>
             </div>
+            <div class="field">
+              <label for="produto">Produto ou linha de interesse</label>
+              <input id="produto" name="produto" value={selectedProduct} placeholder="Se já tiver algo em mente" />
+            </div>
+            <div class="field">
+              <label for="canalPreferido">Como prefere receber o retorno?</label>
+              <select id="canalPreferido" name="canalPreferido">
+                <option value="">Sem preferência</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">E-mail</option>
+              </select>
+            </div>
             <div class="field field-full">
               <label for="cidade">Cidade / Estado</label>
               <input id="cidade" name="cidade" autocomplete="address-level2" />
@@ -114,6 +134,8 @@ const {
           </label>
 
           <input type="hidden" name="origem" value={Astro.url.pathname} />
+          <input type="hidden" name="categoriaOrigem" value={selectedCategory} />
+          <input type="hidden" name="referencia" value="" data-lead-referrer />
           <button type="submit" class="btn btn-primary">Enviar informações</button>
           <p class="form-note">Seus dados não serão vendidos. O contato poderá ser encaminhado a uma equipe técnica parceira quando isso for necessário para o atendimento.</p>
           <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
@@ -126,6 +148,17 @@ const {
 <script>
   const leadForm = document.getElementById('leadForm') as HTMLFormElement | null;
   const formStatus = document.getElementById('formStatus');
+  const referrerInput = leadForm?.querySelector<HTMLInputElement>('[data-lead-referrer]');
+  if (referrerInput) referrerInput.value = document.referrer;
+  let formStarted = false;
+  leadForm?.addEventListener('input', () => {
+    if (formStarted) return;
+    formStarted = true;
+    window.ppaTrack?.('lead_start', {
+      origem: leadForm.querySelector<HTMLInputElement>('[name="origem"]')?.value,
+      produto: leadForm.querySelector<HTMLInputElement>('[name="produto"]')?.value,
+    });
+  });
 
   leadForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
