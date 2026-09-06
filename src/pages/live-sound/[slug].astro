@@ -6,6 +6,88 @@ export function getStaticPaths() {
 }
 const { page } = Astro.props;
 const archived = ['wireless', 'projetos-de-sonorizacao'].includes(page.slug);
+
+const details = {
+  'consoles-digitais': {
+    image: '/images/live-sound-foh-v2.webp',
+    imageAlt: 'Console digital na posição de FOH diante do palco de um teatro',
+    heading: 'O console precisa acompanhar a operação',
+    text: 'A escolha começa pelo número e pelo tipo de sinais, mas também passa pela velocidade de acesso aos controles, organização de cenas, mixes de monitoração, gravação e integração com stageboxes. Um modelo adequado é aquele que a equipe consegue operar com segurança na rotina real.',
+    points: [
+      ['Entradas, saídas e buses', 'Mapear fontes, destinos, matrizes e mixes evita descobrir limitações depois da instalação.'],
+      ['Workflow da equipe', 'Camadas, telas, controles físicos e acesso remoto devem ser compatíveis com os operadores.'],
+      ['Ecossistema e expansão', 'Stageboxes, protocolos de rede, gravação e suporte precisam entrar na decisão.'],
+    ],
+  },
+  'violet-audio': {
+    image: '/images/blog/violet-audio-dmix-128.webp',
+    imageAlt: 'Violet Audio dMix 128 em ambiente de produção ao vivo',
+    heading: 'Uma plataforma deve ser especificada dentro do sistema',
+    text: 'A dMix 128 pode ocupar diferentes funções em uma arquitetura de áudio. Para definir a configuração, é necessário levantar entradas, saídas, processamento, controle, formatos de transporte e redundância exigidos pela aplicação.',
+    points: [
+      ['Arquitetura de sinais', 'A quantidade e a distribuição de I/O devem refletir palco, FOH, monitoração e demais destinos.'],
+      ['Controle e operação', 'A interface de controle precisa corresponder à equipe e ao grau de flexibilidade necessário.'],
+      ['Integração', 'Rede, conversão, cabeamento e equipamentos existentes devem ser avaliados como um conjunto.'],
+    ],
+  },
+  'presonus-studiolive': {
+    image: '/images/studiolive-se32r-igrejas.webp',
+    imageAlt: 'Console digital PreSonus StudioLive em uma igreja',
+    heading: 'Superfície, rack mixer e software no mesmo planejamento',
+    text: 'O ecossistema StudioLive permite organizar controle, mixagem, gravação e monitoração de maneiras diferentes. A escolha entre formatos deve considerar onde o sistema será operado, quantas pessoas terão acesso e como acontecem montagens, ensaios e eventos.',
+    points: [
+      ['Formato de operação', 'Superfícies e rack mixers atendem rotinas diferentes de controle local e remoto.'],
+      ['Gravação e produção', 'O fluxo entre apresentação, passagem de som, registro e produção deve ser definido antes da compra.'],
+      ['Monitoração e rede', 'Distribuição de mixes, stageboxes e conexões precisam acompanhar o porte do sistema.'],
+    ],
+  },
+  'sistemas-para-igrejas': {
+    image: '/images/studiolive-se32r-igrejas.webp',
+    imageAlt: 'Console de áudio operado diante do palco de uma igreja',
+    heading: 'Clareza para o público e segurança para a equipe',
+    text: 'Uma igreja opera o mesmo sistema todas as semanas, muitas vezes com técnicos e voluntários de diferentes níveis de experiência. Por isso, inteligibilidade, ganho antes da microfonia, cenas bem organizadas e procedimentos simples são tão importantes quanto os equipamentos.',
+    points: [
+      ['Cobertura e acústica', 'O sistema deve distribuir voz e música com uniformidade e respeitar as características do ambiente.'],
+      ['Operação recorrente', 'Cenas, identificação, treinamento e documentação ajudam a manter consistência entre equipes.'],
+      ['Palco e transmissão', 'Monitoração, wireless, gravação e streaming precisam compartilhar sinais sem criar uma operação frágil.'],
+    ],
+  },
+  'eventos-e-locadoras': {
+    image: '/images/expertise-theatre.jpg',
+    imageAlt: 'Sistema de iluminação e sonorização preparado para evento em teatro',
+    heading: 'Equipamentos de evento precisam funcionar em diferentes cenários',
+    text: 'Para eventos e locadoras, a decisão envolve mais do que atender um único rider. Transporte, velocidade de montagem, padronização, manutenção, compatibilidade e disponibilidade de contingência influenciam diretamente a operação.',
+    points: [
+      ['Inventário coerente', 'Padronizar conexões, acessórios e procedimentos reduz tempo de montagem e erros em campo.'],
+      ['Mobilidade e proteção', 'Peso, cases, distribuição elétrica e cabeamento fazem parte do custo e da rotina do sistema.'],
+      ['Redundância e suporte', 'Pontos críticos precisam de planos de contingência compatíveis com o porte de cada produção.'],
+    ],
+  },
+  dante: {
+    image: '/images/expertise-blueprint.jpg',
+    imageAlt: 'Representação técnica de infraestrutura para projeto de áudio em rede',
+    heading: 'Áudio em rede começa por uma infraestrutura bem definida',
+    text: 'Dante permite transportar e distribuir múltiplos canais de áudio, mas a previsibilidade depende do projeto da rede. Topologia, capacidade dos switches, clock, endereçamento, redundância e documentação precisam ser definidos de acordo com a operação.',
+    points: [
+      ['Topologia da rede', 'O desenho deve mostrar dispositivos, caminhos de sinal, enlaces e pontos de expansão.'],
+      ['Configuração e clock', 'A rede precisa ter regras claras para sincronismo, identificação e gerenciamento dos equipamentos.'],
+      ['Operação e diagnóstico', 'Documentação, monitoramento e acesso controlado facilitam manutenção e resolução de falhas.'],
+    ],
+  },
+  'monitoracao-pessoal': {
+    image: '/images/expertise-mic.jpg',
+    imageAlt: 'Detalhes técnicos de microfonação e sistema de sonorização',
+    heading: 'Autonomia no palco exige distribuição bem planejada',
+    text: 'A monitoração pessoal pode reduzir o volume no palco e dar mais controle aos músicos. Para funcionar bem, o sistema precisa oferecer as fontes certas, mixes suficientes, distribuição confiável e uma forma de controle que todos consigam usar.',
+    points: [
+      ['Fontes e mixes', 'Definir o que cada músico precisa ouvir orienta canais, buses e pontos de distribuição.'],
+      ['Controle individual', 'A interface deve permitir ajustes rápidos sem tornar a operação mais complexa.'],
+      ['Treinamento e segurança', 'Ganho, limitadores, organização de cabos e procedimentos ajudam a proteger a audição e o sistema.'],
+    ],
+  },
+} as const;
+
+const detail = details[page.slug as keyof typeof details];
 ---
 <LandingLayout
   title={page.title}
@@ -13,7 +95,8 @@ const archived = ['wireless', 'projetos-de-sonorizacao'].includes(page.slug);
   canonical={`/live-sound/${page.slug}`}
   description={page.description}
   intro={page.intro}
-  image="/images/expertise-theatre.jpg"
+  image={detail?.image ?? '/images/expertise-theatre.jpg'}
+  imageAlt={detail?.imageAlt ?? 'Palco de teatro preparado para sonorização'}
   bullets={page.bullets}
   noindex={archived}
   cards={[
@@ -21,4 +104,38 @@ const archived = ['wireless', 'projetos-de-sonorizacao'].includes(page.slug);
     { title: 'Outras soluções para sonorização', description: 'Conheça opções para consoles, redes e monitoração.', href: '/live-sound' },
     { title: 'Guias e análises', description: 'Consulte informações técnicas para planejar sua operação.', href: '/conteudos' },
   ]}
-/>
+>
+  {detail && (
+    <section class="section live-detail">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Planejamento técnico</span>
+          <h2>{detail.heading}</h2>
+          <p>{detail.text}</p>
+        </div>
+        <div class="detail-grid">
+          {detail.points.map(([title, description], index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</LandingLayout>
+
+<style>
+  .live-detail { border-top: 1px solid var(--line); }
+  .detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .detail-grid article { padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+  .detail-grid span { color: var(--green); font-size: .75rem; font-weight: 800; letter-spacing: .1em; }
+  .detail-grid h3 { margin-top: 16px; font-size: 1.25rem; }
+  .detail-grid p { margin-top: 10px; color: var(--muted); }
+
+  @media (max-width: 800px) {
+    .detail-grid { grid-template-columns: 1fr; }
+  }
+</style>

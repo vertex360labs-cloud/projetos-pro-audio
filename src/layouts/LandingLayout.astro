@@ -12,6 +12,7 @@ interface Props {
   eyebrow: string;
   intro?: string;
   image?: string;
+  imageAlt?: string;
   cards?: Card[];
   bullets?: string[];
   ctaTitle?: string;
@@ -19,7 +20,7 @@ interface Props {
 }
 
 const {
-  title, description, canonical, eyebrow, intro, image,
+  title, description, canonical, eyebrow, intro, image, imageAlt = '',
   cards = [], bullets = [], ctaTitle, noindex = false,
 } = Astro.props;
 const crumbs = [
@@ -46,7 +47,7 @@ const crumbs = [
           <p>{intro}</p>
           {bullets.length > 0 && <ul class="check-list">{bullets.map((bullet) => <li>{bullet}</li>)}</ul>}
         </div>
-        {image && <div class="split-media"><img src={image} alt="" width="900" height="680" loading="eager" /></div>}
+        {image && <div class="split-media"><img src={image} alt={imageAlt} width="900" height="680" loading="eager" /></div>}
       </div>
     </section>
   )}
