@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { includeBlogEntry } from '@/utils/blog';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import FAQ from '@/components/FAQ.astro';
 import { homeFAQ } from '@/data/faq';
 import { faqSchema } from '@/utils/schema';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
+const posts = (await getCollection('blog', includeBlogEntry))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
