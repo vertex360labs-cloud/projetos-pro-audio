@@ -4,7 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
 import { buildSEO, type SEOProps } from '@/utils/seo';
-import { organizationSchema } from '@/utils/schema';
+import { organizationSchema, personSchema, websiteSchema } from '@/utils/schema';
 import { SITE } from '@/config/site';
 
 interface Props extends SEOProps {
@@ -13,8 +13,11 @@ interface Props extends SEOProps {
 
 const seo = buildSEO(Astro.props);
 const gaId = import.meta.env.PUBLIC_GA_ID;
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const schemas = [
   organizationSchema(),
+  websiteSchema(),
+  personSchema(),
   ...(Astro.props.schema
     ? Array.isArray(Astro.props.schema)
       ? Astro.props.schema
@@ -33,7 +36,9 @@ const schemas = [
     <meta name="robots" content={seo.robots} />
     <meta name="theme-color" content={SITE.themeColor} />
     <meta name="color-scheme" content="light" />
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
     <link rel="canonical" href={seo.canonical} />
+    <link rel="alternate" hreflang="pt-BR" href={seo.canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content={seo.og.type} />
@@ -41,6 +46,7 @@ const schemas = [
     <meta property="og:title" content={seo.og.title} />
     <meta property="og:description" content={seo.og.description} />
     <meta property="og:image" content={seo.og.image} />
+    <meta property="og:image:alt" content={seo.og.title} />
     <meta property="og:site_name" content={seo.og.siteName} />
     <meta property="og:locale" content={seo.og.locale} />
 
@@ -48,10 +54,12 @@ const schemas = [
     <meta name="twitter:title" content={seo.twitter.title} />
     <meta name="twitter:description" content={seo.twitter.description} />
     <meta name="twitter:image" content={seo.twitter.image} />
+    <meta name="twitter:image:alt" content={seo.twitter.title} />
 
     {seo.publishedTime && <meta property="article:published_time" content={seo.publishedTime} />}
     {seo.modifiedTime && <meta property="article:modified_time" content={seo.modifiedTime} />}
     {seo.author && <meta name="author" content={seo.author} />}
+    {seo.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
 
     {schemas.map((schema) => (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

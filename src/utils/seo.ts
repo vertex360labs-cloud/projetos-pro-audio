@@ -15,8 +15,12 @@ export interface SEOProps {
 }
 
 export function getCanonicalUrl(path: string): string {
+  const origin = SITE.url.replace(/\/+$/, '');
   const normalized = path.startsWith('/') ? path : `/${path}`;
-  return new URL(normalized, SITE.url).href;
+  const url = new URL(normalized, `${origin}/`);
+  const pathname = url.pathname.replace(/\/+$/, '') || '/';
+  if (pathname === '/') return origin;
+  return `${origin}${pathname}${url.search}${url.hash}`;
 }
 
 export function resolveOgImage(ogImage?: string | ImageMetadata): string {

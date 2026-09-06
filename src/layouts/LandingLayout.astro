@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
+import RelatedArticles from '@/components/RelatedArticles.astro';
 import CTA from '@/components/CTA.astro';
 import { breadcrumbSchema } from '@/utils/schema';
 
 interface Card { title: string; description: string; href?: string; label?: string; }
+interface RelatedArticle { title: string; href: string; description: string; }
 interface Props {
   title: string;
   description: string;
@@ -15,13 +17,14 @@ interface Props {
   imageAlt?: string;
   cards?: Card[];
   bullets?: string[];
+  relatedArticles?: RelatedArticle[];
   ctaTitle?: string;
   noindex?: boolean;
 }
 
 const {
   title, description, canonical, eyebrow, intro, image, imageAlt = '',
-  cards = [], bullets = [], ctaTitle, noindex = false,
+  cards = [], bullets = [], relatedArticles = [], ctaTitle, noindex = false,
 } = Astro.props;
 const crumbs = [
   { label: 'Início', href: '/' },
@@ -74,5 +77,6 @@ const crumbs = [
   )}
 
   <slot />
+  <RelatedArticles articles={relatedArticles} title="Leituras relacionadas" />
   <CTA title={ctaTitle ?? `Quer conversar sobre ${title}?`} />
 </BaseLayout>

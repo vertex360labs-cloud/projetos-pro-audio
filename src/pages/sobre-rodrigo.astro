@@ -2,9 +2,12 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import CTA from '@/components/CTA.astro';
+import { breadcrumbSchema } from '@/utils/schema';
+
+const crumbs = [{ label: 'Início', href: '/' }, { label: 'Sobre Rodrigo' }];
 ---
-<BaseLayout title="Sobre Rodrigo Chiacchio" description="Conheça a trajetória de Rodrigo Chiacchio no mercado brasileiro de áudio e tecnologia." canonical="/sobre-rodrigo">
-  <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Sobre Rodrigo'}]}/><span class="eyebrow">Experiência, mercado e contexto</span><h1 class="title-lg">Rodrigo Chiacchio</h1><p class="lead">Especialista em áudio profissional com quase 30 anos de atuação no mercado brasileiro.</p></div></header>
+<BaseLayout title="Sobre Rodrigo Chiacchio" description="Conheça a trajetória de Rodrigo Chiacchio no mercado brasileiro de áudio e tecnologia." canonical="/sobre-rodrigo" schema={breadcrumbSchema(crumbs)}>
+  <header class="page-hero"><div class="container"><Breadcrumb items={crumbs}/><span class="eyebrow">Experiência, mercado e contexto</span><h1 class="title-lg">Rodrigo Chiacchio</h1><p class="lead">Especialista em áudio profissional com quase 30 anos de atuação no mercado brasileiro.</p></div></header>
   <section class="section"><div class="container split about-split"><div class="split-media about-photo"><img src="/images/rodrigo-bracos-cruzados.webp" alt="Rodrigo Chiacchio de braços cruzados em estúdio profissional" width="1024" height="1536"/></div><div class="split-copy"><h2>Experiência técnica e comercial para orientar cada escolha</h2><p>A trajetória de Rodrigo passou por Mastermídia, Quanta Brasil, Next Audio, Quanta Store, Music Company e Quanta Pro, acompanhando mudanças profundas em gravação, produção, distribuição e integração de áudio.</p><p>Hoje, o Projetos Pro Audio reúne essa experiência para ajudar profissionais e empresas a avaliar equipamentos, integrar sistemas e planejar investimentos com mais clareza.</p><p>O atendimento considera o ambiente, a rotina de trabalho, os equipamentos já disponíveis e os planos de expansão. Assim, cada recomendação parte de uma necessidade concreta e pode ser discutida com as equipes responsáveis pelo fornecimento e pela implementação.</p><ul class="check-list"><li>Estúdios profissionais e configurações híbridas</li><li>Sonorização, áudio em rede e monitoração</li><li>Integração entre equipamentos novos e sistemas existentes</li></ul><p>Atualmente é Representante Oficial das empresas:<br/><strong>Music Company, Quanta Pro e Pro Audio Solutions</strong></p></div></div></section>
   <CTA title="Vamos conversar sobre o seu sistema?" />
 </BaseLayout>

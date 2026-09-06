@@ -1,6 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import LandingLayout from '@/layouts/LandingLayout.astro';
-import { livePages } from '@/data/architecture';
+import { livePages, liveTopicKeywords } from '@/data/architecture';
+import { includeBlogEntry, getRelatedPostsByKeywords } from '@/utils/blog';
 export function getStaticPaths() {
   return livePages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
 }
@@ -88,6 +90,12 @@ const details = {
 } as const;
 
 const detail = details[page.slug as keyof typeof details];
+const posts = await getCollection('blog', includeBlogEntry);
+const relatedArticles = getRelatedPostsByKeywords(posts, liveTopicKeywords[page.slug] ?? []).map((item) => ({
+  title: item.data.title,
+  href: `/blog/${item.id}`,
+  description: item.data.description,
+}));
 ---
 <LandingLayout
   title={page.title}
@@ -98,6 +106,7 @@ const detail = details[page.slug as keyof typeof details];
   image={detail?.image ?? '/images/expertise-theatre.jpg'}
   imageAlt={detail?.imageAlt ?? 'Palco de teatro preparado para sonorização'}
   bullets={page.bullets}
+  relatedArticles={relatedArticles}
   noindex={archived}
   cards={[
     { title: 'Analise sua necessidade', description: 'Compartilhe o sistema atual, o ambiente e a aplicação desejada.', href: '/diagnostico-de-setup' },

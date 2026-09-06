@@ -3,42 +3,70 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import { legacyReviews } from '@/data/legacy-reviews';
 import { getCollection } from 'astro:content';
+import { includeInListings } from '@/utils/blog';
+import { breadcrumbSchema } from '@/utils/schema';
+import { getCanonicalUrl } from '@/utils/seo';
 
-const featuredReviewSlugs = new Set([
+const featuredReviewSlugs = [
   'violet-audio-dmix-128-plataforma-mixagem-rede',
   'harrison-flex-10-interface-audio-estudio-hibrido',
-]);
+];
 
-const featuredReviews = (await getCollection(
-  'blog',
-  ({ id, data }) => !data.draft && featuredReviewSlugs.has(id),
-)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog', includeInListings))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featured = featuredReviewSlugs
+  .map((id) => posts.find((post) => post.id === id))
+  .filter((post): post is (typeof posts)[number] => Boolean(post));
+const others = posts.filter((post) => !featuredReviewSlugs.includes(post.id));
+const reviews = [...featured, ...others];
+
+const listing = [
+  ...reviews.map((review) => ({
+    title: review.data.title,
+    description: review.data.description,
+    href: `/blog/${review.id}`,
+    image: review.data.heroImage,
+  })),
+  ...legacyReviews.map((review) => ({
+    title: review.title,
+    description: review.description,
+    href: `/${review.slug}`,
+    image: review.image,
+  })),
+];
+
+const schema = [
+  breadcrumbSchema([
+    { label: 'Início', href: '/' },
+    { label: 'Análises técnicas', href: '/reviews' },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Análises de equipamentos — Projetos Pro Audio',
+    numberOfItems: listing.length,
+    itemListElement: listing.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.title,
+      url: getCanonicalUrl(item.href),
+    })),
+  },
+];
 ---
-<BaseLayout title="Análises de Equipamentos" description="Análises técnicas de equipamentos profissionais de áudio, com aplicações, integração e critérios para uma compra bem planejada." canonical="/reviews">
+<BaseLayout title="Análises de Equipamentos" description="Análises técnicas de equipamentos profissionais de áudio, com aplicações, integração e critérios para uma compra bem planejada." canonical="/reviews" schema={schema}>
   <header class="page-hero"><div class="container"><Breadcrumb items={[{label:'Início',href:'/'},{label:'Análises técnicas'}]}/><span class="eyebrow">Análises técnicas</span><h1 class="title-lg">Entenda o papel de cada equipamento no seu projeto</h1><p class="lead">Veja aplicações, integrações, pontos de atenção e alternativas para escolher soluções coerentes com sua operação.</p></div></header>
   <section class="section">
     <div class="container">
       <div class="blog-grid">
-        {featuredReviews.map((review) => (
-          <a class="card blog-card" href={`/blog/${review.id}`}>
-            {review.data.heroImage && (
+        {listing.map((review) => (
+          <a class="card blog-card" href={review.href}>
+            {review.image && (
               <div class="blog-card-image">
-                <img src={review.data.heroImage} alt={review.data.title} width="640" height="360" loading="lazy" />
+                <img src={review.image} alt={review.title} width="640" height="360" loading="lazy" />
               </div>
             )}
-            <div class="blog-card-body">
-              <span class="tag">Análise técnica</span>
-              <h3>{review.data.title}</h3>
-              <p>{review.data.description}</p>
-            </div>
-          </a>
-        ))}
-
-        {legacyReviews.map((review) => (
-          <a class="card blog-card" href={`/${review.slug}`}>
-            <div class="blog-card-image">
-              <img src={review.image} alt={review.title} width="640" height="360" loading="lazy" />
-            </div>
             <div class="blog-card-body">
               <span class="tag">Análise técnica</span>
               <h3>{review.title}</h3>

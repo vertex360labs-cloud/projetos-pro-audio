@@ -18,12 +18,14 @@ interface Props {
   title: string;
   description: string;
   slug: string;
+  canonical?: string;
   author: string;
   pubDate: Date;
   updatedDate?: Date;
   readingTime: number;
   heroImage?: string;
   heroImageAlt?: string;
+  tags?: string[];
   breadcrumbs: BreadcrumbItem[];
   toc?: { id: string; text: string; level: number }[];
   relatedArticles?: RelatedArticle[];
@@ -33,12 +35,14 @@ const {
   title,
   description,
   slug,
+  canonical = slug,
   author,
   pubDate,
   updatedDate,
   readingTime,
   heroImage,
   heroImageAlt = title,
+  tags = [],
   breadcrumbs,
   toc = [],
   relatedArticles = [],
@@ -51,21 +55,23 @@ const modifiedTime = (updatedDate ?? pubDate).toISOString();
 <BaseLayout
   title={title}
   description={description}
-  canonical={slug}
+  canonical={canonical}
   ogType="article"
   ogImage={heroImage}
   publishedTime={publishedTime}
   modifiedTime={modifiedTime}
   author={author}
+  tags={tags}
   schema={[
     articleSchema({
       title,
       description,
-      slug,
+      slug: canonical,
       publishedTime,
       modifiedTime,
       image: heroImage,
       author,
+      tags,
     }),
     breadcrumbSchema(breadcrumbs),
   ]}

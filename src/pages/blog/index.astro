@@ -2,9 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
-import { includeBlogEntry } from '@/utils/blog';
+import { includeInListings } from '@/utils/blog';
 
-const posts = (await getCollection('blog', includeBlogEntry))
+const posts = (await getCollection('blog', includeInListings))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 

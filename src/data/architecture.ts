@@ -28,3 +28,24 @@ export const livePages: SolutionPage[] = [
   { slug: 'monitoracao-pessoal', title: 'Monitoração Pessoal', description: 'Mais autonomia para músicos e menos pressão no palco.', intro: 'Sistemas pessoais como Livemix podem melhorar consistência e reduzir conflitos, desde que entradas, distribuição e treinamento sejam planejados.', bullets: ['Quantidade de mixes e canais', 'Distribuição e controle', 'Treinamento dos usuários'] },
   { slug: 'projetos-de-sonorizacao', title: 'Projetos de Sonorização', description: 'Cobertura, processamento, infraestrutura e operação planejados em conjunto.', intro: 'A escolha dos equipamentos precisa responder ao espaço e à forma de uso. Projetos mais complexos contam com o apoio das equipes responsáveis pela especificação e implementação.', bullets: ['Levantamento do ambiente', 'Cobertura e dimensionamento', 'Integração e comissionamento'] },
 ];
+
+export const studioTopicKeywords: Record<string, string[]> = {
+  'upgrade-de-estudio': ['upgrade', 'interface', 'ssl 18', 'harrison'],
+  monitoracao: ['monitor', 'monitoração', 'adam', 'pmc', 'atc', 'subwoofer'],
+  'interfaces-e-conversao': ['interface', 'conversão', 'ssl', 'antelope', 'orion', 'galaxy', 'clarett', 'tascam', 'harrison', 'alpha'],
+  'outboard-e-setup-hibrido': ['fusion', 'bus+', 'channel strip', 'puredrive', 'outboard', 'neve', 'origin', 'revival'],
+  'expansao-multicanal': ['galaxy', 'orion', 'adat', 'multicanal', 'umd', 'discrete'],
+  'controladores-e-workflow': ['uf8', 'uf1', 'uc1', 'controlador'],
+  'projetos-completos': ['console', 'origin', 'neve', 'harrison'],
+  'podcast-e-broadcast': ['mixcast', 'podcast', 'tascam'],
+};
+
+export const liveTopicKeywords: Record<string, string[]> = {
+  'consoles-digitais': ['console', 'l350', 'studiolive', 'dmix', 'origin'],
+  'violet-audio': ['violet', 'dmix'],
+  'presonus-studiolive': ['studiolive', 'presonus'],
+  'sistemas-para-igrejas': ['igreja', 'studiolive', 'violet'],
+  'eventos-e-locadoras': ['live', 'console', 'stagebox', 'l350'],
+  dante: ['dante', 'rede', 'stagebox', 'sb32', 'dmix'],
+  'monitoracao-pessoal': ['monitoração pessoal', 'iem', 'livemix'],
+};

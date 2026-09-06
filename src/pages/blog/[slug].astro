@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { includeBlogEntry } from '@/utils/blog';
+import { includeBlogEntry, pickRelatedPosts } from '@/utils/blog';
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
 import { getReadingTime } from '@/utils/reading-time';
 
@@ -16,17 +16,10 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const readingTime = getReadingTime(post.body ?? '');
 const slug = `/blog/${post.id}`;
+const canonical = post.data.canonical ?? slug;
 
-const allPosts = (await getCollection('blog', includeBlogEntry))
-  .filter((item) => item.id !== post.id)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const relatedSlugs = post.data.relatedSlugs ?? [];
-const relatedFromFrontmatter = allPosts.filter((item) => relatedSlugs.includes(item.id));
-const relatedFallback = allPosts
-  .filter((item) => item.data.tags.some((tag) => post.data.tags.includes(tag)))
-  .slice(0, 3);
-const related = (relatedFromFrontmatter.length ? relatedFromFrontmatter : relatedFallback).slice(0, 3);
+const allPosts = await getCollection('blog', includeBlogEntry);
+const related = pickRelatedPosts(post, allPosts);
 
 const toc = headings
   .filter((heading) => heading.depth >= 2 && heading.depth <= 3)
@@ -41,15 +34,17 @@ const toc = headings
   title={post.data.title}
   description={post.data.description}
   slug={slug}
+  canonical={canonical}
   author={post.data.author}
   pubDate={post.data.pubDate}
   updatedDate={post.data.updatedDate}
   readingTime={readingTime}
   heroImage={post.data.heroImage}
   heroImageAlt={post.data.title}
+  tags={post.data.tags}
   breadcrumbs={[
     { label: 'Início', href: '/' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Conteúdos', href: '/conteudos' },
     { label: post.data.title },
   ]}
   toc={toc}
